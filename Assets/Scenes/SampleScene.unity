@@ -568,6 +568,7 @@ GameObject:
   - component: {fileID: 1038014375}
   - component: {fileID: 1038014378}
   - component: {fileID: 1038014376}
+  - component: {fileID: 1038014377}
   m_Layer: 0
   m_Name: Ant
   m_TagString: Untagged
@@ -683,10 +684,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 1038014370}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2b719a94ea208546b93b44ab88efee7, type: 3}
+  m_Script: {fileID: 11500000, guid: 7298d34b792225c49aa682b8fa9ee998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetSearcher: {fileID: 1038014375}
+  viewRadius: 0
+  viewAngle: 0
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  meshFilter: {fileID: 0}
+--- !u!114 &1038014377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038014370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7298d34b792225c49aa682b8fa9ee998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 0
+  viewAngle: 0
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  meshFilter: {fileID: 0}
 --- !u!54 &1038014378
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1217,6 +1247,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
   m_Antialiasing: 1
   m_AntialiasingQuality: 2
