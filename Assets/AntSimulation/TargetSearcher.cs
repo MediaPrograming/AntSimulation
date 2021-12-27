@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,8 +6,9 @@ using UnityEngine;
 
 namespace AntSimulation
 {
-    public class Ant : MonoBehaviour
+    public class TargetSearcher : MonoBehaviour
     {
+        public event Action<Transform[]> OnFindTargets;
         public float viewRadius;
         [Range(0, 360)] public float viewAngle;
 
@@ -19,10 +21,7 @@ namespace AntSimulation
         /// 障害物マスク
         /// </summary>
         public LayerMask obstacleMask;
-
-        private Transform[] _visibleTargets = { };
-        public Transform[] VisibleTargets => _visibleTargets;
-
+        
         public MeshFilter meshFilter;
         private Mesh _viewMesh;
 
@@ -63,7 +62,8 @@ namespace AntSimulation
                 .Select(x => x.transform)
                 .ToArray();
 
-            _visibleTargets = inTargets;
+            
+            OnFindTargets?.Invoke(inTargets);
         }
 
         /// <summary>
