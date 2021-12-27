@@ -7,7 +7,7 @@ using UnityEngine;
 namespace AntSimulation
 {
     public class TargetSearcher : MonoBehaviour
-    {
+    { 
         public event Action<Transform[]> OnFindTargets;
         public float viewRadius;
         [Range(0, 360)] public float viewAngle;
