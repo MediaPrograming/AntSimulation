@@ -28,7 +28,7 @@ namespace AntSimulation{
                  i.position.y-self.position.y,
                  i.position.z-self.position.z);
              }
-            tmp+=new Vector3(Random.value,Random.value,Random.value);
+            tmp+=new Vector3(Random.value/100,Random.value/100,Random.value/100);
              if (transforms.Length!=0){
                  tmp=(tmp/transforms.Length).normalized;
             }
