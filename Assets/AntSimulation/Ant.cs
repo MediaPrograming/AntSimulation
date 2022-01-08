@@ -27,5 +27,17 @@ namespace AntSimulation
         public abstract void Find(Transform[] transforms);
 
         public abstract void Move();
+
+
+        /// <summary>
+        /// フェロモンの放出
+        /// </summary>
+        public GameObject DischargePheromones(GameObject pheromones)
+        {
+            var pos = this.transform.position;
+            var go = Instantiate(pheromones);
+            go.transform.position = pos;
+            return go;
+        }
     }
 }
