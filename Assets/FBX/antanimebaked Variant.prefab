@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7298d34b792225c49aa682b8fa9ee998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 0.1
+  viewRadius: 0.5
   viewAngle: 87
   targetMask:
     serializedVersion: 2
@@ -345,6 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d62779c2594bcae40872186fb3e27a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 50
   pheromonesSearcher: {fileID: 2148064896503800975}
   feedSearcher: {fileID: 428133239126229902}
   speedscale: 0.01
@@ -362,7 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7298d34b792225c49aa682b8fa9ee998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 0.1
+  viewRadius: 0.5
   viewAngle: 87
   targetMask:
     serializedVersion: 2

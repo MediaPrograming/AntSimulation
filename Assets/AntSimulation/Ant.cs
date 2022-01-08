@@ -11,6 +11,7 @@ namespace AntSimulation
         public GUID Id { get; } = new GUID();
         public Vector3 Direction { get; private set; }
 
+        public int HP = 10;
         public Feed feed;
         public bool HasFeed => feed != null;
         [SerializeField] private TargetSearcher pheromonesSearcher;

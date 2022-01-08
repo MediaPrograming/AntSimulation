@@ -6,7 +6,7 @@ namespace AntSimulation
     {
         [SerializeField] AntSimulator antSimulator;
         [SerializeField] AntSpawner antSpawner;
-        void Start()
+        void Awake()
         {
             antSpawner.OnGenerate += antSimulator.Add;
         }
