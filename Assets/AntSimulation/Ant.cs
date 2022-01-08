@@ -11,7 +11,7 @@ namespace AntSimulation
         public GUID Id { get; } = new GUID();
         public Vector3 Direction { get; private set; }
 
-        public int HP = 10;
+        public int HP = 50;
         public Feed feed;
         public bool HasFeed => feed != null;
         [SerializeField] private TargetSearcher pheromonesSearcher;
@@ -22,10 +22,7 @@ namespace AntSimulation
             feedSearcher.OnFindTargets += OnFindFeed;
         }
 
-        public void SetDirection(Vector3 dir)
-        {
-            // とりあえず適当なSet関数の用意
-        } 
+
 
         /// <summary>
         /// フェロモンが視界に入った時
