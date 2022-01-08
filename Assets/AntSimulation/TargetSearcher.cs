@@ -7,7 +7,7 @@ using UnityEngine;
 namespace AntSimulation
 {
     public class TargetSearcher : MonoBehaviour
-    { 
+    {
         public event Action<Transform[]> OnFindTargets;
         public float viewRadius;
         [Range(0, 360)] public float viewAngle;
@@ -21,7 +21,7 @@ namespace AntSimulation
         /// 障害物マスク
         /// </summary>
         public LayerMask obstacleMask;
-        
+
         public MeshFilter meshFilter;
         private Mesh _viewMesh;
 
@@ -62,6 +62,8 @@ namespace AntSimulation
                 .Select(x => x.transform)
                 .ToArray();
 
+            if (inTargets.Length == 0)
+                return;
             
             OnFindTargets?.Invoke(inTargets);
         }
@@ -101,7 +103,7 @@ namespace AntSimulation
         private void DrawFieldOfView()
         {
             //　角度分
-            int angleQuantify= Mathf.RoundToInt(viewAngle);
+            int angleQuantify = Mathf.RoundToInt(viewAngle);
             List<Vector3> points = new List<Vector3>();
             for (int i = 0; i <= angleQuantify; i++)
             {

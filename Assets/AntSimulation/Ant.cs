@@ -11,23 +11,31 @@ namespace AntSimulation
         public GUID Id { get; } = new GUID();
         public Vector3 Direction { get; private set; }
 
-        public bool hasFeed;
+        public Feed feed;
+        public bool HasFeed => feed != null;
         [SerializeField] private TargetSearcher targetSearcher;
-
+        [SerializeField] private TargetSearcher feedSearcher;
         private void Start()
         {
-            targetSearcher.OnFindTargets += Find;
+            targetSearcher.OnFindTargets += OnFindPheromones;
+            feedSearcher.OnFindTargets += OnFindFeed;
         }
+
+        public void SetDirection(Vector3 dir)
+        {
+            // とりあえず適当なSet関数の用意
+        } 
 
         /// <summary>
         /// フェロモンが視界に入った時
         /// </summary>
         /// <param name="ant"></param>
         /// <param name="transforms"></param>
-        public abstract void Find(Transform[] transforms);
+        public abstract void OnFindPheromones(Transform[] transforms);
+        public abstract void OnFindFeed(Transform[] feeds);
 
         public abstract void Move();
-
+  
 
         /// <summary>
         /// フェロモンの放出
