@@ -1,21 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AntController : MonoBehaviour
+namespace AntSimulation
 {
-    
-    // Start is called before the first frame update
-    void Start()
+    public class AntController : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        [SerializeField] AntSimulator antSimulator;
+        [SerializeField] AntSpawner antSpawner;
+        void Start()
+        {
+            antSpawner.OnGenerate += antSimulator.Add;
+        }
     }
 }
-
-
