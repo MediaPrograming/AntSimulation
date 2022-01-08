@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,63 +8,53 @@ public class GravityFreeAgent : MonoBehaviour {
     [SerializeField]
     Transform CenterOfBalance;  // 重心
 
+    public float movableDist = 1.0f;
+    public float rayOffset = 0.1f;
+
     void Start ()
     {
-        Application.targetFrameRate = 60;
     }
     
-    void Update () {
+    
+    void FixedUpdate () {
 
-        // キーボード入力で移動、回転
-        // if (Input.GetKey(KeyCode.LeftArrow)) {
-        //     transform.Rotate(
-        //         new Vector3(0, -3f, 0),
-        //         Space.Self
-        //     );
-        // } else if (Input.GetKey(KeyCode.RightArrow)) {
-        //     transform.Rotate(
-        //         new Vector3(0, 3f, 0),
-        //         Space.Self
-        //     );
-        // } else if (Input.GetKey(KeyCode.UpArrow)) {
-        //     transform.position = 
-        //         transform.position + 
-        //         (transform.forward * 3 * Time.fixedDeltaTime);
-        // } else if (Input.GetKey(KeyCode.DownArrow)) {
-        //     transform.position = 
-        //         transform.position + 
-        //         (transform.forward * 3 * Time.fixedDeltaTime);
-        // }
+        Ray ray = new Ray(transform.position,-transform.up + transform.forward * 0.1f);
         
-        // transform.position = 
-        //     transform.position + 
-        //     (transform.forward * 3 * Time.fixedDeltaTime);
-
         RaycastHit hit;
 
-        // Transformの真下の地形の法線を調べる
+        // Transformの少し前方の地形を調べる
         if (Physics.Raycast(
-                CenterOfBalance.position,
-                -transform.up + transform.forward * 0.1f,
+                ray,
                 out hit,
-                float.PositiveInfinity))
+                movableDist))
         {
-            // 傾きの差を求める
+                // 傾きの差を求める
             Quaternion q = Quaternion.FromToRotation(
-                transform.up,
-                hit.normal);
+                    transform.up,
+                    hit.normal);
 
-            
-            transform.position = transform.position  + (transform.forward * Time.fixedDeltaTime);
-            // 自分を回転させる
             transform.rotation *= q;
 
-            // 地面から一定距離離れていたら落下
-            if (hit.distance > 0.05f) {
-                transform.position =
-                    transform.position +
-                    (-transform.up * Physics.gravity.magnitude * Time.fixedDeltaTime);
-            }
+            transform.position = hit.point + (transform.position - CenterOfBalance.position);
+            
+            Debug.DrawRay(ray.origin,ray.direction * hit.distance, Color.red, 1,true);
+            return;
+        }
+
+        int rayNum = 4;
+        Ray[] rays = new Ray[rayNum];
+        rays[0] = new Ray(CenterOfBalance.position+transform.forward*rayOffset, transform.forward);
+        rays[1] = new Ray(CenterOfBalance.position+transform.forward*rayOffset, transform.forward - transform.up);
+        rays[2] = new Ray(CenterOfBalance.position+transform.forward*rayOffset, -transform.up);
+        rays[3] = new Ray(CenterOfBalance.position+transform.forward*rayOffset, -transform.forward-transform.up);
+        
+        RaycastHit[] hitArray = new RaycastHit[rayNum];
+        
+        for (int i = 0; i < rayNum; i++)
+        {
+            Physics.Raycast(rays[i], out hitArray[i], float.PositiveInfinity);
+            
+            Debug.DrawRay(rays[i].origin,rays[i].direction * 100,Color.blue,1,true);
         }
 
     }
