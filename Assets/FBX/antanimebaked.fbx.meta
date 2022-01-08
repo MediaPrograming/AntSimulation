@@ -1,8 +1,11 @@
 fileFormatVersion: 2
-guid: f1f88c93583c8504fbd1ca065185cafb
+guid: 59d969633def04948ad4fc7b33ded0ea
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
+  - first:
+      74: 7583080319782976921
+    second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|Action"
   - first:
       74: 433256089447224805
     second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|bodyAction"
@@ -25,15 +28,6 @@ ModelImporter:
       74: -2386758555459097639
     second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|RmiddleAction"
   - first:
-      74: -6140374235425719669
-    second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action"
-  - first:
-      74: -4834216788075965445
-    second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action.001"
-  - first:
-      74: 8125854857852294858
-    second: "\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action.002"
-  - first:
       74: -1899894370992004077
     second: Lfront|bodyAction
   - first:
@@ -54,15 +48,6 @@ ModelImporter:
   - first:
       74: 4138052096754560290
     second: Lfront|RmiddleAction
-  - first:
-      74: 3283475573616643569
-    second: "Lfront|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action"
-  - first:
-      74: -2556825065464698937
-    second: "Lfront|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action.001"
-  - first:
-      74: 3782633686828539457
-    second: "Lfront|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action.002"
   - first:
       74: 7297125133467706064
     second: Lmiddle|bodyAction
@@ -85,15 +70,6 @@ ModelImporter:
       74: 2175739159929594267
     second: Lmiddle|RmiddleAction
   - first:
-      74: 1199123909305009128
-    second: "Lmiddle|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action"
-  - first:
-      74: 5361388222705489463
-    second: "Lmiddle|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action.001"
-  - first:
-      74: 3080375069303638855
-    second: "Lmiddle|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action.002"
-  - first:
       74: 671114058525334865
     second: Lback|bodyAction
   - first:
@@ -114,15 +90,6 @@ ModelImporter:
   - first:
       74: 6614168527324594932
     second: Lback|RmiddleAction
-  - first:
-      74: -3683856294944336739
-    second: "Lback|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action"
-  - first:
-      74: 6612229691383238485
-    second: "Lback|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action.001"
-  - first:
-      74: 2144224657221771170
-    second: "Lback|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action.002"
   - first:
       74: 4397218273170613636
     second: Rback|bodyAction
@@ -145,15 +112,6 @@ ModelImporter:
       74: 4775803069433995396
     second: Rback|RmiddleAction
   - first:
-      74: -189534815228880508
-    second: "Rback|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action"
-  - first:
-      74: -6593505057978072922
-    second: "Rback|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action.001"
-  - first:
-      74: 4050546205007750282
-    second: "Rback|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action.002"
-  - first:
       74: -5682623495566924859
     second: Rmiddle|bodyAction
   - first:
@@ -174,15 +132,6 @@ ModelImporter:
   - first:
       74: 2796301946132935870
     second: Rmiddle|RmiddleAction
-  - first:
-      74: 5018949233406448749
-    second: "Rmiddle|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action"
-  - first:
-      74: 2515137223729927625
-    second: "Rmiddle|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action.001"
-  - first:
-      74: -448005277143187996
-    second: "Rmiddle|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action.002"
   - first:
       74: -4608020064997426880
     second: Rfront|bodyAction
@@ -205,15 +154,6 @@ ModelImporter:
       74: -6795093688765976639
     second: Rfront|RmiddleAction
   - first:
-      74: -8186012610718742470
-    second: "Rfront|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action"
-  - first:
-      74: -1955146123362470622
-    second: "Rfront|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action.001"
-  - first:
-      74: 9042347570573005775
-    second: "Rfront|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action.002"
-  - first:
       74: -1675024491217397237
     second: body|bodyAction
   - first:
@@ -234,21 +174,12 @@ ModelImporter:
   - first:
       74: -2302481413289574592
     second: body|RmiddleAction
-  - first:
-      74: 2293984282295045044
-    second: "body|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action"
-  - first:
-      74: -7858894502093932727
-    second: "body|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action.001"
-  - first:
-      74: -951802896103587534
-    second: "body|\u30A2\u30FC\u30DE\u30C1\u30E5\u30A2Action.002"
   externalObjects: {}
   materials:
-    materialImportMode: 2
-    materialName: 0
+    materialImportMode: 1
+    materialName: 3
     materialSearch: 1
-    materialLocation: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -263,7 +194,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -271,7 +202,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 0
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
@@ -279,11 +210,11 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
-    importVisibility: 1
+    importVisibility: 0
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
-    fileIdsGeneration: 2
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -295,21 +226,21 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     meshOptimizationFlags: -1
-    indexFormat: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
-    secondaryUVMarginMethod: 1
+    secondaryUVMarginMethod: 0
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 3
-    normalCalculationMode: 4
-    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
@@ -328,14 +259,14 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
-  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
