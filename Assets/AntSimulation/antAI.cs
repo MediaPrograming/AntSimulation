@@ -52,6 +52,7 @@ namespace AntSimulation
 
         public override void OnFindFeed(Transform[] feeds)
         {
+            if(feeds.Length == 0) return;
             int index = 0;
             float distance = Vector3.Distance(this.transform.position, feeds[0].position);
             for (int i = 1; i < feeds.Length; i++)
