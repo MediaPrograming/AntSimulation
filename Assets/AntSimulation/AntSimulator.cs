@@ -30,10 +30,18 @@ namespace AntSimulation
 
         IEnumerator Discharge()
         {
+            List<Ant> removeList = new List<Ant>();
             foreach (var ant in _ants)
             {
                 // フェロモンの排出
                 _ = ant.DischargePheromones(pheromones);
+                ant.HP -= 1;
+                if(ant.HP <= 0) removeList.Add(ant);
+            }
+            foreach (var ant in removeList)
+            {
+                _ants.Remove(ant);
+                Destroy(ant.gameObject);
             }
 
             yield return new WaitForSeconds(5);

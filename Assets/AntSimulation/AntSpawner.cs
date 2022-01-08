@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace AntSimulation
 {
@@ -24,7 +25,8 @@ namespace AntSimulation
         private IEnumerator Spawn()
         {
             var newAnt = GameObject.Instantiate(antPrefab).GetComponent<Ant>();
-            newAnt.transform.position = this.transform.position;
+            newAnt.transform.position = this.transform.position + new Vector3(Random.Range(-1.0f,1.0f),0,Random.Range(-1.0f,1.0f));
+            newAnt.transform.Rotate(0,Random.Range(-10.0f,10.0f),0);
             OnGenerate?.Invoke(newAnt);
 
             yield return new WaitForSeconds(spawnRate);
