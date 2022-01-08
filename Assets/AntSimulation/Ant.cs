@@ -21,10 +21,7 @@ namespace AntSimulation
             feedSearcher.OnFindTargets += OnFindFeed;
         }
 
-        public void SetDirection(Vector3 dir)
-        {
-            // とりあえず適当なSet関数の用意
-        } 
+
 
         /// <summary>
         /// フェロモンが視界に入った時
