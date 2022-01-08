@@ -21,11 +21,7 @@ namespace AntSimulation
         
         private void Update()
         {
-            foreach (var ant in _ants)
-            {
-                //　移動
-                ant.Move();
-            }
+          
         }
 
         IEnumerator Discharge()

@@ -38,8 +38,6 @@ namespace AntSimulation
             }
         }
 
-        public override void Move()
-        {
-        }
+   
     }
 }

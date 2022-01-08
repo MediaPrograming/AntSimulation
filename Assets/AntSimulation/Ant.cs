@@ -13,11 +13,11 @@ namespace AntSimulation
 
         public Feed feed;
         public bool HasFeed => feed != null;
-        [SerializeField] private TargetSearcher targetSearcher;
+        [SerializeField] private TargetSearcher pheromonesSearcher;
         [SerializeField] private TargetSearcher feedSearcher;
         private void Start()
         {
-            targetSearcher.OnFindTargets += OnFindPheromones;
+            pheromonesSearcher.OnFindTargets += OnFindPheromones;
             feedSearcher.OnFindTargets += OnFindFeed;
         }
 
@@ -34,7 +34,7 @@ namespace AntSimulation
         public abstract void OnFindPheromones(Transform[] transforms);
         public abstract void OnFindFeed(Transform[] feeds);
 
-        public abstract void Move();
+
   
 
         /// <summary>
