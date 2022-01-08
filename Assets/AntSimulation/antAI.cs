@@ -68,7 +68,6 @@ namespace AntSimulation
             {
                 //餌を発見
                 var newFeed = feed.Fetch();
-                
             }
             else
             {
@@ -77,7 +76,5 @@ namespace AntSimulation
                 SetDirection((feed.transform.position - transform.position).normalized);
             }
         }
-
-    
     }
 }

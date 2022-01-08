@@ -309,6 +309,9 @@ MonoBehaviour:
   CenterOfBalance: {fileID: 842634703}
   movableDist: 0.7
   rayOffset: 0.02
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &428133239126229902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7298d34b792225c49aa682b8fa9ee998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 4.93
+  viewRadius: 0.1
   viewAngle: 87
   targetMask:
     serializedVersion: 2
@@ -345,8 +348,8 @@ MonoBehaviour:
   pheromonesSearcher: {fileID: 2148064896503800975}
   feedSearcher: {fileID: 428133239126229902}
   speedscale: 0.01
-  randomwidth: 0.01
-  randomscale: 0.01
+  randomwidth: 0.341
+  randomscale: 0.4
 --- !u!114 &2148064896503800975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,7 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7298d34b792225c49aa682b8fa9ee998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 4.93
+  viewRadius: 0.1
   viewAngle: 87
   targetMask:
     serializedVersion: 2

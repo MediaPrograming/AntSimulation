@@ -4,42 +4,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class GravityFreeAgent : MonoBehaviour {
-
-    [SerializeField]
-    Transform CenterOfBalance;  // 重心
+public class GravityFreeAgent : MonoBehaviour
+{
+    [SerializeField] Transform CenterOfBalance; // 重心
 
     public float movableDist = 1.0f;
     public float rayOffset = 0.02f;
 
-    void Start ()
-    {
-        
-    }
-    
-    
-    void FixedUpdate () {
+    [SerializeField] private LayerMask groundLayerMask;
 
-        Ray ray = new Ray(CenterOfBalance.position + transform.up * 0.01f,-transform.up + transform.forward);
-        
+    void Start()
+    {
+    }
+
+
+    void FixedUpdate()
+    {
+        Ray ray = new Ray(CenterOfBalance.position + transform.up * 0.01f, -transform.up + transform.forward);
+
         RaycastHit hit;
-        
+
         // Transformの少し前方の地形を調べる
         if (Physics.Raycast(
                 ray,
                 out hit,
-                movableDist))
+                movableDist, groundLayerMask))
         {
             // 傾きの差を求める
             Quaternion q = Quaternion.FromToRotation(
                 transform.up,
                 hit.normal);
             transform.rotation *= q;
-            
+
 
             transform.position = hit.point + (transform.position - CenterOfBalance.position);
-        
-            Debug.DrawRay(ray.origin,ray.direction * hit.distance, Color.red, 1,true);
+
+            Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.red, 1, true);
 
             return;
         }
@@ -87,7 +87,5 @@ public class GravityFreeAgent : MonoBehaviour {
         //     transform.Rotate(10,10,10);
         //     transform.position = transform.position +new Vector3(0,0.01f,0);
         // }
-
     }
-
 }
