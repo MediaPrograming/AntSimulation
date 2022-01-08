@@ -16,7 +16,8 @@ namespace AntSimulation
 
         //ランダムに動く大きさのスケール
         [SerializeField] float randomscale = 0.01f;
-
+        //餌を発見したときの寿命長めのフェロモン
+        [SerializeField] private GameObject feedpheromones;
         /// <summary>
         /// フェロモンを見つけたとき行きたい方向を決定する。
         /// </summary>
@@ -59,22 +60,34 @@ namespace AntSimulation
             {
                 if (distance > Vector3.Distance(this.transform.position, feeds[i].position))
                     index = i;
+                    distance = Vector3.Distance(this.transform.position, feeds[i].position);
             }
 
             var feed = feeds[index].GetComponent<FeedContainer>();
             if (!feed) return;
 
 
-            if (distance < 2f)
+            if (distance <0.01f)
             {
                 //餌を発見
                 var newFeed = feed.Fetch();
+                this.feed=newFeed;
+                Transform self = this.transform; //蟻の位置git 
+                this.transform.rotation = Quaternion.LookRotation(-self.forward, self.up);
+                this.DischargePheromones(feedpheromones);
+                this.DischargePheromones(feedpheromones);
+                this.DischargePheromones(feedpheromones);
+                this.DischargePheromones(feedpheromones);
+            
             }
             else
             {
                 // とりあえず方向セットに関しては適当
                 // 後で修正
-                SetDirection((feed.transform.position - transform.position).normalized);
+                //SetDirection((feed.transform.position - transform.position).normalized);
+                //一番近い餌の方向を向く
+                this.transform.rotation = Quaternion.LookRotation((feed.transform.position - self).normalized, self.up);
+
             }
         }
     }
