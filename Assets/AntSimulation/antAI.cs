@@ -68,6 +68,8 @@ namespace AntSimulation
             {
                 //餌を発見
                 var newFeed = feed.Fetch();
+                 Transform self = this.transform; //蟻の位置
+                 this.transform.rotation = Quaternion.LookRotation(-self.forward, self.up);
             }
             else
             {
