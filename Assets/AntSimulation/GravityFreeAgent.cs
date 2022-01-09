@@ -20,7 +20,9 @@ public class GravityFreeAgent : MonoBehaviour
 
     void FixedUpdate()
     {
-        Ray ray = new Ray(CenterOfBalance.position + transform.up * 0.01f, -transform.up + transform.forward);
+        if (this.transform.rotation.eulerAngles.x != 0 || this.transform.rotation.eulerAngles.z != 0) this.transform.rotation= Quaternion.Euler(0, Random.Range(-1.0f,1.0f), 0);
+        
+        Ray ray = new Ray(CenterOfBalance.position + transform.up * 0.05f, -transform.up + transform.forward);
 
         RaycastHit hit;
 

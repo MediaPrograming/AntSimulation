@@ -128,7 +128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8979721020865296607
 Transform:
   m_ObjectHideFlags: 0
@@ -324,8 +324,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7298d34b792225c49aa682b8fa9ee998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 0.1
-  viewAngle: 87
+  viewRadius: 2.24
+  viewAngle: 31
   targetMask:
     serializedVersion: 2
     m_Bits: 64
@@ -345,11 +345,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d62779c2594bcae40872186fb3e27a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 20
+  feed: {fileID: 0}
   pheromonesSearcher: {fileID: 2148064896503800975}
   feedSearcher: {fileID: 428133239126229902}
   speedscale: 0.01
   randomwidth: 0.341
   randomscale: 0.4
+  feedpheromones: {fileID: 8408890724172061497, guid: 88c0bb16ac9d7a54a83d1d73189b2d86, type: 3}
 --- !u!114 &2148064896503800975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,7 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7298d34b792225c49aa682b8fa9ee998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 0.1
+  viewRadius: 0.52
   viewAngle: 87
   targetMask:
     serializedVersion: 2

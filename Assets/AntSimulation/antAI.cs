@@ -1,6 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace AntSimulation
 {
@@ -16,8 +20,18 @@ namespace AntSimulation
 
         //ランダムに動く大きさのスケール
         [SerializeField] float randomscale = 0.01f;
+
         //餌を発見したときの寿命長めのフェロモン
         [SerializeField] private GameObject feedpheromones;
+
+        private void Update()
+        {
+            if (feed)
+            {
+                this.feed.transform.position = this.transform.position + new Vector3(0, 0.02f, 0);
+            }
+        }
+
         /// <summary>
         /// フェロモンを見つけたとき行きたい方向を決定する。
         /// </summary>
@@ -53,41 +67,56 @@ namespace AntSimulation
 
         public override void OnFindFeed(Transform[] feeds)
         {
+            //餌を持っている場合
+            if (feed) return;
+            if (feeds.Length == 0) return;
             int index = 0;
             float distance = Vector3.Distance(this.transform.position, feeds[0].position);
             for (int i = 1; i < feeds.Length; i++)
             {
                 if (distance > Vector3.Distance(this.transform.position, feeds[i].position))
                     index = i;
-                    distance = Vector3.Distance(this.transform.position, feeds[i].position);
+                distance = Vector3.Distance(this.transform.position, feeds[i].position);
             }
 
-            var feed = feeds[index].GetComponent<FeedContainer>();
-            if (!feed) return;
-
+            var feedContainer = feeds[index].GetComponent<FeedContainer>();
+            if (!feedContainer) return;
+        
             Transform self = this.transform; //蟻の位置git 
-              
-            if (distance <.1f)
+
+
+            if (distance < 1f)
             {
                 //餌を発見
-                var newFeed = feed.Fetch();
-                this.feed=newFeed;
+                var newFeed = feedContainer.Fetch();
+                this.feed = newFeed;
+                feed.transform.parent = this.transform; 
+                
                 this.transform.rotation = Quaternion.LookRotation(-self.forward, self.up);
                 this.DischargePheromones(feedpheromones);
                 this.DischargePheromones(feedpheromones);
                 this.DischargePheromones(feedpheromones);
                 this.DischargePheromones(feedpheromones);
-            
             }
             else
             {
-                // とりあえず方向セットに関しては適当
-                // 後で修正
-                //SetDirection((feed.transform.position - transform.position).normalized);
                 //一番近い餌の方向を向く
-                this.transform.rotation = Quaternion.LookRotation((feed.transform.position - self.position).normalized, self.up);
-
+                var direction = (feedContainer.transform.position - self.position).normalized;
+                transform.LookAt( this.transform.position + direction);
             }
+        }
+
+        public override void OnFindEnemy(Transform[] enemies)
+        {
+            if(enemies.Length == 0 ) return;
+          
+            
+            Vector3 direction = new Vector3(0f, 0f,0f);
+            foreach (var enemy in enemies)
+                direction += this.transform.position - enemy.transform.position;
+       
+            transform.LookAt(this.transform.position + direction.normalized);
+            // ここにSetRotation
         }
     }
 }

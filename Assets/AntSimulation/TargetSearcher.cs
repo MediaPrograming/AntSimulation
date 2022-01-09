@@ -62,8 +62,8 @@ namespace AntSimulation
                 .Select(x => x.transform)
                 .ToArray();
 
-            if (inTargets.Length == 0)
-                return;
+            // if (inTargets.Length == 0)
+            //     return;
             
             OnFindTargets?.Invoke(inTargets);
         }
