@@ -38,7 +38,7 @@ namespace AntSimulation
 
             //tmp+=new Vector3(Random.Range(-1.0f,1.0f)*randomspeedscale,Random.Range(-1.0f,1.0f)*randomspeedscale,Random.Range(-1.0f,1.0f)*randomspeedscale);
             float n = Random.Range(0.5f - randomwidth, randomwidth + 0.5f) * Mathf.PI;
-            tmp += (Mathf.Cos((n)) * self.right + Mathf.Sin(n) * self.forward) * randomscale;
+            tmp += (Mathf.Cos(n) * self.right + Mathf.Sin(n) * self.forward) * randomscale;
             if (transforms.Length != 0)
             {
                 tmp = (tmp / (transforms.Length + 1)).normalized * speedscale;
@@ -65,13 +65,13 @@ namespace AntSimulation
             var feed = feeds[index].GetComponent<FeedContainer>();
             if (!feed) return;
 
-
-            if (distance <0.01f)
+            Transform self = this.transform; //蟻の位置git 
+              
+            if (distance <.1f)
             {
                 //餌を発見
                 var newFeed = feed.Fetch();
                 this.feed=newFeed;
-                Transform self = this.transform; //蟻の位置git 
                 this.transform.rotation = Quaternion.LookRotation(-self.forward, self.up);
                 this.DischargePheromones(feedpheromones);
                 this.DischargePheromones(feedpheromones);
@@ -85,7 +85,7 @@ namespace AntSimulation
                 // 後で修正
                 //SetDirection((feed.transform.position - transform.position).normalized);
                 //一番近い餌の方向を向く
-                this.transform.rotation = Quaternion.LookRotation((feed.transform.position - self).normalized, self.up);
+                this.transform.rotation = Quaternion.LookRotation((feed.transform.position - self.position).normalized, self.up);
 
             }
         }
