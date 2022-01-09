@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using AntSimulation;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,16 +11,19 @@ public class GravityFreeAgent : MonoBehaviour
 
     public float movableDist = 1.0f;
     public float rayOffset = 0.02f;
+    private Ant thisAnt;
 
     [SerializeField] private LayerMask groundLayerMask;
 
     void Start()
     {
+        thisAnt = this.GetComponent<Ant>();
     }
 
 
     void FixedUpdate()
     {
+        if(!thisAnt.CanWalk) return;
         if (this.transform.position.y < 0) this.transform.position += this.transform.up * 0.01f;
         Ray ray = new Ray(CenterOfBalance.position + transform.up * 0.05f - transform.forward * 0.01f, -transform.up + transform.forward);
 
@@ -34,7 +38,7 @@ public class GravityFreeAgent : MonoBehaviour
             //傾斜があったら行かない。
             if (Vector3.Dot(hit.normal, Vector3.up) < 0.99)
             {
-                this.transform.position += hit.normal * 0.05f;
+                this.transform.position += hit.normal * 0.1f;
                 this.transform.rotation = Quaternion.LookRotation(new Vector3(0,Random.Range(-10.0f,10.0f),0), new Vector3(0,1,0));
                 return;
             }

@@ -10,11 +10,12 @@ namespace AntSimulation
     {
         public int HP = 10;
         public Feed feed;
+        public bool CanWalk = true;
         public bool HasFeed => feed != null;
         [SerializeField] private TargetSearcher pheromonesSearcher;
         [SerializeField] private TargetSearcher feedSearcher;
         [SerializeField] private TargetSearcher enemySearcher;
-
+        
         private void Start()
         {
             pheromonesSearcher.OnFindTargets += OnFindPheromones;

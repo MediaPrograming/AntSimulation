@@ -37,6 +37,7 @@ namespace AntSimulation
                 _ = ant.DischargePheromones(pheromones);
                 ant.HP -= 1;
                 if(ant.HP <= 0) removeList.Add(ant);
+                ant.CanWalk = !ant.CanWalk;
             }
             foreach (var ant in removeList)
             {
