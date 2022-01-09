@@ -12,7 +12,10 @@ namespace AntSimulation
         [SerializeField] private GameObject antPrefab;
         public event Action<Ant> OnGenerate;
 
+        public int canSpawn = 100;
 
+        [SerializeField] private float spawnerRadius = 0.5f;
+        
         [SerializeField] private float spawnRate = 3;
         private void Start()
         {
@@ -24,10 +27,15 @@ namespace AntSimulation
         /// </summary>
         private IEnumerator Spawn()
         {
-            var newAnt = GameObject.Instantiate(antPrefab).GetComponent<Ant>();
-            newAnt.transform.position = this.transform.position + new Vector3(Random.Range(-1.0f,1.0f),0,Random.Range(-1.0f,1.0f));
-            newAnt.transform.Rotate(0,Random.Range(-10.0f,10.0f),0);
-            OnGenerate?.Invoke(newAnt);
+            if (canSpawn > 0)
+            {
+                var newAnt = GameObject.Instantiate(antPrefab).GetComponent<Ant>();
+                newAnt.transform.position = this.transform.position +
+                                            new Vector3(Random.Range(-spawnerRadius, spawnerRadius), 0, Random.Range(-spawnerRadius, spawnerRadius));
+                newAnt.transform.Rotate(0, Random.Range(-10.0f, 10.0f), 0);
+                OnGenerate?.Invoke(newAnt);
+                canSpawn -= 1;
+            }
 
             yield return new WaitForSeconds(spawnRate);
             StartCoroutine(Spawn());
