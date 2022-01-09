@@ -125,13 +125,13 @@ namespace AntSimulation
 
         public override void OnFindEnemy(Transform[] enemies)
         {
-            Debug.Log("hofhoeh");
-            
+            if (enemies.Length == 0) return;
+
             Vector3 direction = new Vector3(0f, 0f,0f);
             foreach (var enemy in enemies)
                 direction += this.transform.position - enemy.transform.position;
        
-            transform.LookAt(direction.normalized);
+            transform.LookAt(this.transform.position + direction.normalized);
             // ここにSetRotation
         }        
     }

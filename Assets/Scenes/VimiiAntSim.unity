@@ -452,6 +452,7 @@ MonoBehaviour:
   feed: {fileID: 0}
   pheromonesSearcher: {fileID: 0}
   feedSearcher: {fileID: 0}
+  enemySearcher: {fileID: 0}
   speedscale: 0.01
   randomwidth: 0.198
   randomscale: 0.01
@@ -717,6 +718,10 @@ MonoBehaviour:
   canSpawn: 100
   spawnerRadius: 0.5
   spawnRate: 0.51
+  viewRadius: 1
+  antLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!4 &145092260
 Transform:
   m_ObjectHideFlags: 0
