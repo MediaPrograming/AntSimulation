@@ -56,12 +56,12 @@ namespace AntSimulation
             if (transforms.Length != 0)
             {
                 tmp = (tmp / (transforms.Length + 1)).normalized * speedscale;
-                print(transforms.Length);
+                //print(transforms.Length);
             }
 
             //print(tmp);
             //緑軸方向成分を消去
-            tmp = Vector3.Scale(tmp, (self.right + self.forward)).normalized;
+            //tmp = Vector3.Scale(tmp, (self.right + self.forward));
             this.transform.rotation = Quaternion.LookRotation(tmp, Vector3.up);
             //this.transform.rotation *= Quaternion.Euler(tmp);
         }
