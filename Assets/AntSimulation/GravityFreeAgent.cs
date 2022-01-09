@@ -20,7 +20,7 @@ public class GravityFreeAgent : MonoBehaviour
 
     void FixedUpdate()
     {
-        // if(this.transform.up.y < 0) this.tra
+        if (this.transform.up.y < 0) this.transform.up = new Vector3(0, 1, 0);
         
         Ray ray = new Ray(CenterOfBalance.position + transform.up * 0.05f, -transform.up + transform.forward);
 

@@ -75,7 +75,7 @@ namespace AntSimulation
             //print(tmp);
             //緑軸方向成分を消去
             // tmp = Vector3.Scale(tmp, (self.right + self.forward)).normalized;
-            this.transform.rotation = Quaternion.LookRotation(tmp, self.up);
+            this.transform.rotation = Quaternion.LookRotation(tmp, new Vector3(0,1,0));
         }
 
         public override void OnFindFeed(Transform[] feeds)
