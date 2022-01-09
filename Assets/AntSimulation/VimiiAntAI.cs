@@ -48,6 +48,7 @@ namespace AntSimulation
         /// </summary>
         public override void OnFindPheromones(Transform[] transforms)
         {
+            if(b_onFindFeed) return;
             //transform フェロモンの位置の配列
             Transform self = this.transform; //蟻の位置
          

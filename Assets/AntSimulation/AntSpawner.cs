@@ -21,6 +21,7 @@ namespace AntSimulation
 
         [SerializeField] private float viewRadius = 1f;
         [SerializeField] private LayerMask antLayerMask;
+        [SerializeField] private Material _spawnerFeed;
         private void Start()
         {
             StartCoroutine(Spawn());
@@ -53,6 +54,7 @@ namespace AntSimulation
                 // 蟻の餌を回収
                 var feed = ant.feed;
                 feed.transform.parent = this.transform;
+                feed.GetComponent<MeshRenderer>().material = _spawnerFeed;
                 ant.feed = null;
                 ant.HP = 50;
                 canSpawn++;
