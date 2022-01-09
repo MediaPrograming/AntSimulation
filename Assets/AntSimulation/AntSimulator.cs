@@ -44,7 +44,7 @@ namespace AntSimulation
                 Destroy(ant.gameObject);
             }
 
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(10);
             StartCoroutine(Discharge());
         }
     }

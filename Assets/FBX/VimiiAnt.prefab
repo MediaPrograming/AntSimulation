@@ -101,7 +101,7 @@ MonoBehaviour:
     m_Bits: 512
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 256
   meshFilter: {fileID: 5950878568780989800}
 --- !u!1001 &348572284820901278
 PrefabInstance:
@@ -142,6 +142,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 752861283158411658, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 843554885463257673, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -153,6 +157,10 @@ PrefabInstance:
     - target: {fileID: 1080552468314092799, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1325967714299207398, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1413022856200557868, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: HP
@@ -200,7 +208,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2753390111213507140, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.01
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 2927120043988937144, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: m_Layer
@@ -256,7 +264,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5307686511651996821, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.277064
+      value: 14.21
       objectReference: {fileID: 0}
     - target: {fileID: 5307686511651996821, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: m_LocalPosition.y
@@ -322,6 +330,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7596871592751714756, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7822739082191128473, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -342,6 +354,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8979721020865296607, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8979721020865296607, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 9074451703685934869, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -352,7 +372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9219969161070950022, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: m_Name
-      value: VimiiAnt
+      value: antanimebaked Variant
       objectReference: {fileID: 0}
     - target: {fileID: 9219969161070950022, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: m_Layer
@@ -397,40 +417,27 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 5585548996506241563, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
   m_PrefabInstance: {fileID: 348572284820901278}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3409669015506905247
+--- !u!114 &288841953780044463
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8873650095627402008}
+  m_GameObject: {fileID: 1055201293280642068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae0f1aa7f9fe91847bd686286041f2d5, type: 3}
+  m_Script: {fileID: 11500000, guid: 7298d34b792225c49aa682b8fa9ee998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 50
-  feed: {fileID: 0}
-  pheromonesSearcher: {fileID: 2321246649137856630}
-  feedSearcher: {fileID: 288841953780044463}
-  enemySearcher: {fileID: 8874938104075180867}
-  speedscale: 0.01
-  randomwidth: 0.5
-  randomscale: 0.01
-  feedpheromones: {fileID: 8408890724172061497, guid: 88c0bb16ac9d7a54a83d1d73189b2d86, type: 3}
---- !u!65 &2751170941732850626
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8873650095627402008}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.6024494, y: 3.959985, z: 8.746248}
-  m_Center: {x: -0.091135874, y: 1.4799929, z: -0.08139238}
+  viewRadius: 2.57
+  viewAngle: 145
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 64
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 256
+  meshFilter: {fileID: 5284336022568601477}
 --- !u!114 &2321246649137856630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,26 +457,39 @@ MonoBehaviour:
     m_Bits: 128
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 256
   meshFilter: {fileID: 4545828542703870062}
---- !u!114 &288841953780044463
+--- !u!65 &2751170941732850626
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8873650095627402008}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.6024494, y: 3.959985, z: 8.746248}
+  m_Center: {x: -0.091135874, y: 1.4799929, z: -0.08139238}
+--- !u!114 &3409669015506905247
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1055201293280642068}
+  m_GameObject: {fileID: 8873650095627402008}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7298d34b792225c49aa682b8fa9ee998, type: 3}
+  m_Script: {fileID: 11500000, guid: ae0f1aa7f9fe91847bd686286041f2d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 1.52
-  viewAngle: 140
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 64
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 1
-  meshFilter: {fileID: 5284336022568601477}
+  HP: 20
+  feed: {fileID: 0}
+  pheromonesSearcher: {fileID: 2321246649137856630}
+  feedSearcher: {fileID: 288841953780044463}
+  enemySearcher: {fileID: 8874938104075180867}
+  speedscale: 0.01
+  randomwidth: 0.5
+  randomscale: 4
+  feedpheromones: {fileID: 8408890724172061497, guid: 88c0bb16ac9d7a54a83d1d73189b2d86, type: 3}

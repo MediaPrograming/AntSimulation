@@ -39,7 +39,7 @@ namespace AntSimulation
             if (FeedPheromonesTime > 0)
             {
                 FeedPheromonesTime -= 1;
-                if(FeedPheromonesTime % 30 == 0) this.DischargePheromones(feedpheromones);
+                if(FeedPheromonesTime % 10 == 0) this.DischargePheromones(feedpheromones);
             }
         }
 
@@ -63,15 +63,13 @@ namespace AntSimulation
                     //フェロモンの重心の相対位置tmp
                     tmp += (i.position - self.position);
                 }
-                Debug.Log("Pheromones<o><o>");
                 // tmp = (tmp / (transforms.Length + 1)).normalized * speedscale;
                 // print(transforms.Length);
             }
-            else
-            {
-                float n = Random.Range(0.5f - randomwidth, randomwidth + 0.5f) * Mathf.PI;
-                tmp += (Mathf.Cos((n)) * self.right + Mathf.Sin(n) * self.forward) * randomscale;
-            }
+            
+            float n = Random.Range(0.5f - randomwidth, randomwidth + 0.5f) * Mathf.PI;
+            tmp += (Mathf.Cos((n)) * self.right + Mathf.Sin(n) * self.forward) * randomscale;
+            
 
             //print(tmp);
             //緑軸方向成分を消去
@@ -102,7 +100,6 @@ namespace AntSimulation
 
             if (distance < 1f)
             {
-                Debug.Log("Feeds<o><o>");
                 //餌を発見
                 var newFeed = feedContainer.Fetch();
                 this.feed = newFeed;
@@ -113,7 +110,7 @@ namespace AntSimulation
                 this.DischargePheromones(feedpheromones);
                 this.DischargePheromones(feedpheromones);
                 this.DischargePheromones(feedpheromones);
-                FeedPheromonesTime += 300;
+                FeedPheromonesTime += 500;
             }
             else
             {
