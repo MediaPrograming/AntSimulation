@@ -8,20 +8,19 @@ namespace AntSimulation
     /// </summary>
     public abstract class Ant : MonoBehaviour
     {
-        public GUID Id { get; } = new GUID();
-        public Vector3 Direction { get; private set; }
-
-        public int HP = 50;
+        public int HP = 10;
         public Feed feed;
         public bool HasFeed => feed != null;
         [SerializeField] private TargetSearcher pheromonesSearcher;
         [SerializeField] private TargetSearcher feedSearcher;
+        [SerializeField] private TargetSearcher enemySearcher;
+
         private void Start()
         {
             pheromonesSearcher.OnFindTargets += OnFindPheromones;
             feedSearcher.OnFindTargets += OnFindFeed;
+            enemySearcher.OnFindTargets += OnFindEnemy;
         }
-
 
 
         /// <summary>
@@ -30,10 +29,10 @@ namespace AntSimulation
         /// <param name="ant"></param>
         /// <param name="transforms"></param>
         public abstract void OnFindPheromones(Transform[] transforms);
+
         public abstract void OnFindFeed(Transform[] feeds);
+        public abstract void OnFindEnemy(Transform[] enemies);
 
-
-  
 
         /// <summary>
         /// フェロモンの放出
