@@ -20,7 +20,9 @@ public class GravityFreeAgent : MonoBehaviour
 
     void FixedUpdate()
     {
-        Ray ray = new Ray(CenterOfBalance.position + transform.up * 0.1f, -transform.up + transform.forward);
+        // if(this.transform.up.y < 0) this.tra
+        
+        Ray ray = new Ray(CenterOfBalance.position + transform.up * 0.05f, -transform.up + transform.forward);
 
         RaycastHit hit;
 
