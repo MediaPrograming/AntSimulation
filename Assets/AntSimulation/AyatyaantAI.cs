@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace AntSimulation
 {
-    public class antAI : Ant
+    public class AyatyaantAI : Ant
     {
         // Start is called before the first frame update
         // Update is called once per frame
@@ -51,11 +51,8 @@ namespace AntSimulation
             }
 
             //tmp+=new Vector3(Random.Range(-1.0f,1.0f)*randomspeedscale,Random.Range(-1.0f,1.0f)*randomspeedscale,Random.Range(-1.0f,1.0f)*randomspeedscale);
-            if(!feed){
-                        float n = Random.Range(0.5f - randomwidth, randomwidth + 0.5f) * Mathf.PI;
-                        tmp += (Mathf.Cos(n) * self.right + Mathf.Sin(n) * self.forward) * randomscale;
-
-            }
+            float n = Random.Range(0.5f - randomwidth, randomwidth + 0.5f) * Mathf.PI;
+            tmp += (Mathf.Cos(n) * self.right + Mathf.Sin(n) * self.forward) * randomscale;
             if (transforms.Length != 0)
             {
                 tmp = (tmp / (transforms.Length + 1)).normalized * speedscale;
@@ -65,7 +62,8 @@ namespace AntSimulation
             //print(tmp);
             //緑軸方向成分を消去
             tmp = Vector3.Scale(tmp, (self.right + self.forward)).normalized;
-            this.transform.rotation = Quaternion.LookRotation(tmp, self.up);
+            this.transform.rotation = Quaternion.LookRotation(tmp, Vector3.up);
+            //this.transform.rotation *= Quaternion.Euler(tmp);
         }
 
         public override void OnFindFeed(Transform[] feeds)
@@ -104,9 +102,9 @@ namespace AntSimulation
             else
             {
                 //一番近い餌の方向を向く
-                //var direction = (feedContainer.transform.position - self.position).normalized;
-                //transform.LookAt( this.transform.position + direction);
-                transform.LookAt( feedContainer.transform.position);
+                var direction = (feedContainer.transform.position - self.position).normalized;
+                transform.LookAt( this.transform.position + direction);
+
             }
         }
 

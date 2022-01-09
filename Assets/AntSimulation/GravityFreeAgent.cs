@@ -20,7 +20,7 @@ public class GravityFreeAgent : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (this.transform.rotation.eulerAngles.x != 0 || this.transform.rotation.eulerAngles.z != 0) this.transform.rotation= Quaternion.Euler(0, Random.Range(-1.0f,1.0f), 0);
+//        if (this.transform.rotation.eulerAngles.x != 0 || this.transform.rotation.eulerAngles.z != 0) this.transform.rotation= Quaternion.Euler(0, Random.Range(-1.0f,1.0f), 0);
         
         Ray ray = new Ray(CenterOfBalance.position + transform.up * 0.05f, -transform.up + transform.forward);
 
@@ -33,11 +33,12 @@ public class GravityFreeAgent : MonoBehaviour
                 movableDist, groundLayerMask))
         {
             // 傾きの差を求める
-            Quaternion q = Quaternion.FromToRotation(
+            /*Quaternion q = Quaternion.FromToRotation(
                 transform.up,
                 hit.normal);
-            transform.rotation *= q;
 
+            transform.rotation *= q;
+*/
 
             transform.position = hit.point + (transform.position - CenterOfBalance.position);
 
