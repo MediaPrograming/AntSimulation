@@ -66,6 +66,7 @@ namespace AntSimulation
                 feedcount++;
                 feed.transform.parent = this.transform;
                 feed.GetComponent<MeshRenderer>().material = _spawnerFeed;
+                //運ばれた餌の数が10を超えたら餌を消すようにした。重いから
                 if(feedcount>10){
                  GameObject.Destroy(this.transform.GetChild(this.transform.childCount-1).gameObject); 
                 }
