@@ -20,6 +20,7 @@ namespace AntSimulation
             pheromonesSearcher.OnFindTargets += OnFindPheromones;
             feedSearcher.OnFindTargets += OnFindFeed;
             enemySearcher.OnFindTargets += OnFindEnemy;
+            
         }
 
 

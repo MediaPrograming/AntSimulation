@@ -95,7 +95,7 @@ namespace AntSimulation
                 distance = Vector3.Distance(this.transform.position, feeds[i].position);
             }
 
-            var feedContainer = feeds[index].GetComponent<FeedContainer>();
+            var feedContainer = feeds[index].GetComponent<InfinitFeedContainer>();
             if (!feedContainer) return;
         
             Transform self = this.transform; //蟻の位置git 

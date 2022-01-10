@@ -11,10 +11,20 @@ namespace AntSimulation
     public class AntSpawner : MonoBehaviour
     {
         [SerializeField] private GameObject antPrefab;
+        //蟻１がスポーンする割合
+        [SerializeField] private float rate1=.3f;
+        [SerializeField] private GameObject antPrefab2;
+        //蟻２がスポーンする割合
+        [SerializeField] private float rate2=.3f;
+        [SerializeField] private GameObject antPrefab3;
+        //蟻３がスポーンする割合
+        [SerializeField] private float rate3=.3f;
         public event Action<Ant> OnGenerate;
 
         public int canSpawn = 100;
-        public int feedcount=0; 
+        private int feedcount=0; 
+       
+        
         [SerializeField] private float spawnerRadius = 0.5f;
         
         [SerializeField] private float spawnRate = 3;
@@ -57,26 +67,39 @@ namespace AntSimulation
                 feed.transform.parent = this.transform;
                 feed.GetComponent<MeshRenderer>().material = _spawnerFeed;
                 if(feedcount>10){
-                    Destroy(feed,.1f);
+                 GameObject.Destroy(this.transform.GetChild(this.transform.childCount-1).gameObject); 
                 }
                 ant.feed = null;
                 ant.HP = 50;
+                ant.transform.rotation = Quaternion.LookRotation(-ant.transform.forward, ant.transform.up);
+               
                 canSpawn++;
             }
         }
 
-
+        
+        
         /// <summary>
-        /// アリ生成用関数
+        /// アリ生成用関数　乱数で3種類の蟻を生成するように変更しましたayatya
         /// </summary>
         private IEnumerator Spawn()
         {
             if (canSpawn > 0)
-            {
-                var newAnt = GameObject.Instantiate(antPrefab).GetComponent<Ant>();
+            {   
+                double n=Random.value;
+                float r1=rate1/(rate1+rate2+rate3);
+                float r2=rate2/(rate1+rate2+rate3);
+                Ant newAnt; 
+                if(n<r1){
+                   newAnt  = GameObject.Instantiate(antPrefab).GetComponent<Ant>();
+                }else if(n<r2+r1){
+                    newAnt = GameObject.Instantiate(antPrefab2).GetComponent<Ant>();
+                }else{
+                    newAnt = GameObject.Instantiate(antPrefab3).GetComponent<Ant>();
+                }
                 newAnt.transform.position = this.transform.position +
                                             new Vector3(Random.Range(-spawnerRadius, spawnerRadius), 0, Random.Range(-spawnerRadius, spawnerRadius));
-                newAnt.transform.Rotate(0, Random.Range(-10.0f, 10.0f), 0);
+                newAnt.transform.Rotate(0, Random.Range(-180.0f, 180.0f), 0);
                 OnGenerate?.Invoke(newAnt);
                 canSpawn -= 1;
             }

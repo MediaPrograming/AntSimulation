@@ -7,6 +7,5 @@ namespace AntSimulation
     /// </summary>
     public class Feed : MonoBehaviour
     {
-   
     }
 }

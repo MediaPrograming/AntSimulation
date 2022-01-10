@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace AntSimulation
 {
-    public class AyatyaantAI : Ant
+    public class AyatyarandomantAI : Ant
     {
         // Start is called before the first frame update
         // Update is called once per frame
@@ -25,9 +25,6 @@ namespace AntSimulation
         //餌を発見したときの寿命長めのフェロモン
         [SerializeField] private GameObject feedpheromones;
         private Vector3 rotated =new Vector3(0,0,0);
-        private void start(){
-            this.DischargePheromones(feedpheromones);
-        }
         private void Update()
         {
             if (feed&&i==0)
@@ -59,17 +56,8 @@ namespace AntSimulation
             }
 
             //tmp+=new Vector3(Random.Range(-1.0f,1.0f)*randomspeedscale,Random.Range(-1.0f,1.0f)*randomspeedscale,Random.Range(-1.0f,1.0f)*randomspeedscale);
-            float n;
-             //改良餌を持っているとき
-             if(feed){
-                n = Random.Range(0.5f - randomwidth*.1f, randomwidth*.1f + 0.5f) * Mathf.PI;
-                tmp += (Mathf.Cos(n) * self.right + Mathf.Sin(n) * self.forward) * randomscale*.1f;
-            
-             }else{
-                n = Random.Range(0.5f - randomwidth, randomwidth + 0.5f) * Mathf.PI;      
-                tmp += (Mathf.Cos(n) * self.right + Mathf.Sin(n) * self.forward) * randomscale;
-             }
-                //
+            float n = Random.Range(0.5f - randomwidth, randomwidth + 0.5f) * Mathf.PI;
+            tmp += (Mathf.Cos(n) * self.right + Mathf.Sin(n) * self.forward) * randomscale;
             if (transforms.Length != 0)
             {
                 tmp = (tmp / (transforms.Length + 1)).normalized * speedscale;
@@ -112,7 +100,10 @@ namespace AntSimulation
                 //デフォルト
                 this.transform.rotation = Quaternion.LookRotation(-self.forward, self.up);
                 //
-               
+                //staticant改良
+                //randomwidth*=.1f;
+                //randomscale *=0.1f;
+                //
                 //砂漠蟻
                 //this.transform.rotation = Quaternion.LookRotation(-rotated, self.up);
                 //
