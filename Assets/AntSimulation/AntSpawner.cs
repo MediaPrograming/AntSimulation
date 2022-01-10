@@ -14,7 +14,7 @@ namespace AntSimulation
         public event Action<Ant> OnGenerate;
 
         public int canSpawn = 100;
-
+        public int feedcount=0; 
         [SerializeField] private float spawnerRadius = 0.5f;
         
         [SerializeField] private float spawnRate = 3;
@@ -53,8 +53,12 @@ namespace AntSimulation
             {
                 // 蟻の餌を回収
                 var feed = ant.feed;
+                feedcount++;
                 feed.transform.parent = this.transform;
                 feed.GetComponent<MeshRenderer>().material = _spawnerFeed;
+                if(feedcount>10){
+                    Destroy(feed,.1f);
+                }
                 ant.feed = null;
                 ant.HP = 50;
                 canSpawn++;

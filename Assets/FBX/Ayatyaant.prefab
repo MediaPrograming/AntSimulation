@@ -124,11 +124,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 428133239126229902, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: viewAngle
-      value: 80
+      value: 141
       objectReference: {fileID: 0}
     - target: {fileID: 428133239126229902, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: viewRadius
-      value: 1.52
+      value: 4.59
       objectReference: {fileID: 0}
     - target: {fileID: 513111184777635881, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: m_Layer
@@ -164,7 +164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1413022856200557868, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: randomwidth
-      value: 0.092
+      value: 0.165
       objectReference: {fileID: 0}
     - target: {fileID: 1812674083901570805, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: m_Layer
@@ -408,7 +408,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.6024494, y: 3.959985, z: 8.746248}
   m_Center: {x: -0.091135874, y: 1.4799929, z: -0.08139238}
---- !u!114 &1914052607
+--- !u!114 &1247747032594390207
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -420,14 +420,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ab1ec98a09301408508bb4483c774a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 25
+  HP: 10
   feed: {fileID: 0}
   pheromonesSearcher: {fileID: 8849548452447358860}
   feedSearcher: {fileID: 6844201305944890709}
   enemySearcher: {fileID: 2437377338144249017}
   speedscale: 0.01
-  randomwidth: 0.163
-  randomscale: 0.7
+  randomwidth: 0.252
+  randomscale: 0.1
   feedpheromones: {fileID: 8408890724172061497, guid: 88c0bb16ac9d7a54a83d1d73189b2d86, type: 3}
 --- !u!114 &8849548452447358860
 MonoBehaviour:

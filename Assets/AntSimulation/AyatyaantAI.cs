@@ -23,7 +23,7 @@ namespace AntSimulation
 
         //餌を発見したときの寿命長めのフェロモン
         [SerializeField] private GameObject feedpheromones;
-
+        private Vector3 rotated =new Vector3(0,0,0);
         private void Update()
         {
             if (feed)
@@ -58,7 +58,7 @@ namespace AntSimulation
                 tmp = (tmp / (transforms.Length + 1)).normalized * speedscale;
                 //print(transforms.Length);
             }
-
+            rotated+=tmp;
             //print(tmp);
             //緑軸方向成分を消去
             //tmp = Vector3.Scale(tmp, (self.right + self.forward));
@@ -80,7 +80,7 @@ namespace AntSimulation
                 distance = Vector3.Distance(this.transform.position, feeds[i].position);
             }
 
-            var feedContainer = feeds[index].GetComponent<FeedContainer>();
+            var feedContainer = feeds[index].GetComponent<InfinitFeedContainer>();
             if (!feedContainer) return;
         
             Transform self = this.transform; //蟻の位置git 
@@ -92,8 +92,13 @@ namespace AntSimulation
                 var newFeed = feedContainer.Fetch();
                 this.feed = newFeed;
                 feed.transform.parent = this.transform; 
-                
+                //デフォルト
                 this.transform.rotation = Quaternion.LookRotation(-self.forward, self.up);
+                //
+                //砂漠蟻
+                //randomwidth*=0.1f;
+                //this.transform.rotation = Quaternion.LookRotation(-rotated, self.up);
+                //
                 this.DischargePheromones(feedpheromones);
                 this.DischargePheromones(feedpheromones);
                 this.DischargePheromones(feedpheromones);
@@ -104,7 +109,7 @@ namespace AntSimulation
                 //一番近い餌の方向を向く
                 var direction = (feedContainer.transform.position - self.position).normalized;
                 transform.LookAt( this.transform.position + direction);
-
+                
             }
         }
 
@@ -120,5 +125,6 @@ namespace AntSimulation
             transform.LookAt(this.transform.position + direction.normalized);
             // ここにSetRotation
         }
+  
     }
 }

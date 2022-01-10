@@ -24,6 +24,7 @@ namespace AntSimulation
         //餌を発見したときの寿命長めのフェロモン
         [SerializeField] private GameObject feedpheromones;
 
+
         private void Update()
         {
             if (feed)
@@ -65,6 +66,7 @@ namespace AntSimulation
             //print(tmp);
             //緑軸方向成分を消去
             tmp = Vector3.Scale(tmp, (self.right + self.forward)).normalized;
+            //
             this.transform.rotation = Quaternion.LookRotation(tmp, self.up);
         }
 
@@ -106,6 +108,7 @@ namespace AntSimulation
                 //一番近い餌の方向を向く
                 //var direction = (feedContainer.transform.position - self.position).normalized;
                 //transform.LookAt( this.transform.position + direction);
+                
                 transform.LookAt( feedContainer.transform.position);
             }
         }
