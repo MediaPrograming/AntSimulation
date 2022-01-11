@@ -13,7 +13,7 @@ namespace AntSimulation
         [SerializeField] private GameObject antPrefab;
         public event Action<Ant> OnGenerate;
 
-        public int canSpawn = 100;
+        public int canSpawn = 50;
 
         [SerializeField] private float spawnerRadius = 0.5f;
         
@@ -22,12 +22,32 @@ namespace AntSimulation
         [SerializeField] private float viewRadius = 1f;
         [SerializeField] private LayerMask antLayerMask;
         [SerializeField] private Material _spawnerFeed;
+        
+        private readonly List<Ant> RestAnts = new List<Ant>();
         private void Start()
         {
             StartCoroutine(Spawn());
             StartCoroutine(nameof(FindTargetsWithDelay), .2f);
         }
 
+        private void Update()
+        {
+            List<Ant> removeList = new List<Ant>();
+            foreach (var ant in RestAnts)
+            {
+                ant.stamina += Time.deltaTime;
+                if (ant.stamina >= 100.0)
+                {
+                    ant.HP = 20;
+                    ant.CanWalk = true;
+                    removeList.Add(ant);
+                }
+            }
+            foreach (var fullAnt in removeList)
+            {
+                RestAnts.Remove(fullAnt);
+            }
+        }
 
         IEnumerator FindTargetsWithDelay(float delay)
         {
@@ -46,12 +66,11 @@ namespace AntSimulation
         {
             // ReSharper disable once Unity.PreferNonAllocApi
             var ants = Physics.OverlapSphere(transform.position, viewRadius, antLayerMask);
-
-
-            foreach (var ant in ants.Select(x => x.GetComponent<Ant>())
-                         )
+            
+            foreach (var ant in ants.Select(x => x.GetComponent<Ant>()))
             {
-                ant.HP = 20;
+                RestAnts.Add(ant);
+                ant.CanWalk = false;
                 if (ant.HasFeed)
                 {
                     // 蟻の餌を回収

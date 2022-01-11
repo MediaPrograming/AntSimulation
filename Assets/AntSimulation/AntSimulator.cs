@@ -26,6 +26,15 @@ namespace AntSimulation
 
         private void Update()
         {
+            foreach (var ant in _ants)
+            {
+                if(ant.CanWalk == true) ant.stamina -= Time.deltaTime;
+                if (ant.stamina <= 0.0)
+                {
+                    ant.stamina = 0.0;
+                    ant.CanWalk = false;
+                }
+            }
         }
 
         IEnumerator Discharge()
@@ -35,10 +44,13 @@ namespace AntSimulation
             {
                 // フェロモンの排出
                 _ = ant.DischargePheromones(pheromones);
-                //巣に帰ったアリはもう一つ多く出す
-                if(ant.HP >= 19) 
-                    _ = ant.DischargePheromones(pheromones);
-                ant.HP -= 1;
+                //スタミナ切れの時はHPを消費して回復。
+                if (ant.stamina <= 0.0)
+                {
+                    ant.HP -= 1;
+                    ant.stamina += 3.0;
+                }
+                ant.CanWalk = true;
                 if(ant.HP <= 0) removeList.Add(ant);
             }
             foreach (var ant in removeList)
