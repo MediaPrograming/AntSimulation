@@ -8,7 +8,7 @@ namespace AntSimulation
     /// </summary>
     public abstract class Ant : MonoBehaviour
     {
-        public int HP = 10;
+        public int HP = 20;
         public Feed feed;
         public bool CanWalk = true;
         public bool HasFeed => feed != null;

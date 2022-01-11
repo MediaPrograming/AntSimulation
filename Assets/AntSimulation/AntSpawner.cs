@@ -49,15 +49,18 @@ namespace AntSimulation
 
 
             foreach (var ant in ants.Select(x => x.GetComponent<Ant>())
-                         .Where(x => x.HasFeed))
+                         )
             {
-                // 蟻の餌を回収
-                var feed = ant.feed;
-                feed.transform.parent = this.transform;
-                feed.GetComponent<MeshRenderer>().material = _spawnerFeed;
-                ant.feed = null;
-                ant.HP = 50;
-                canSpawn++;
+                ant.HP = 20;
+                if (ant.HasFeed)
+                {
+                    // 蟻の餌を回収
+                    var feed = ant.feed;
+                    feed.transform.parent = this.transform;
+                    feed.GetComponent<MeshRenderer>().material = _spawnerFeed;
+                    ant.feed = null;
+                    canSpawn += 3;
+                }
             }
         }
 

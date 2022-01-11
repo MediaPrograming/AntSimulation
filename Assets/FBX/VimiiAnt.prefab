@@ -48,7 +48,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8104634334470795365}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2a0c0c2eb935d07499f2cb1e977a4ece, type: 2}
+  - {fileID: 2100000, guid: a64433687833bc641b99206e22632a6f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -160,7 +160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1325967714299207398, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1413022856200557868, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: HP
@@ -332,7 +332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7596871592751714756, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7822739082191128473, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -372,7 +372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9219969161070950022, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: m_Name
-      value: antanimebaked Variant
+      value: VimiiAnt
       objectReference: {fileID: 0}
     - target: {fileID: 9219969161070950022, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: m_Layer
@@ -417,48 +417,6 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 5585548996506241563, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
   m_PrefabInstance: {fileID: 348572284820901278}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &288841953780044463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1055201293280642068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7298d34b792225c49aa682b8fa9ee998, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewRadius: 2.57
-  viewAngle: 145
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 64
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 256
-  meshFilter: {fileID: 5284336022568601477}
---- !u!114 &2321246649137856630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4646096949029524914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7298d34b792225c49aa682b8fa9ee998, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewRadius: 2.2
-  viewAngle: 169
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 128
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 256
-  meshFilter: {fileID: 4545828542703870062}
 --- !u!65 &2751170941732850626
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -486,10 +444,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 20
   feed: {fileID: 0}
+  CanWalk: 1
   pheromonesSearcher: {fileID: 2321246649137856630}
   feedSearcher: {fileID: 288841953780044463}
   enemySearcher: {fileID: 8874938104075180867}
   speedscale: 0.01
   randomwidth: 0.5
-  randomscale: 4
+  randomscale: 6
   feedpheromones: {fileID: 8408890724172061497, guid: 88c0bb16ac9d7a54a83d1d73189b2d86, type: 3}
+--- !u!114 &2321246649137856630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4646096949029524914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7298d34b792225c49aa682b8fa9ee998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 3.03
+  viewAngle: 140
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 128
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 256
+  meshFilter: {fileID: 4545828542703870062}
+--- !u!114 &288841953780044463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055201293280642068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7298d34b792225c49aa682b8fa9ee998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 4.32
+  viewAngle: 83
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 64
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 256
+  meshFilter: {fileID: 5284336022568601477}

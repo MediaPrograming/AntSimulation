@@ -35,9 +35,11 @@ namespace AntSimulation
             {
                 // フェロモンの排出
                 _ = ant.DischargePheromones(pheromones);
+                //巣に帰ったアリはもう一つ多く出す
+                if(ant.HP >= 19) 
+                    _ = ant.DischargePheromones(pheromones);
                 ant.HP -= 1;
                 if(ant.HP <= 0) removeList.Add(ant);
-                ant.CanWalk = !ant.CanWalk;
             }
             foreach (var ant in removeList)
             {
@@ -45,7 +47,7 @@ namespace AntSimulation
                 Destroy(ant.gameObject);
             }
 
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(5);
             StartCoroutine(Discharge());
         }
     }

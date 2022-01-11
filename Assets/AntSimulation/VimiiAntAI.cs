@@ -25,7 +25,7 @@ namespace AntSimulation
         [SerializeField] private GameObject feedpheromones;
         
         //フェロモン大放出期間
-        private int FeedPheromonesTime = 0;
+        private int PheromonesTime = 0;
 
         private bool b_onFindFeed = false;
         
@@ -36,10 +36,10 @@ namespace AntSimulation
                 this.feed.transform.position = this.transform.position + new Vector3(0, 0.02f, 0);
             }
 
-            if (FeedPheromonesTime > 0)
+            if (PheromonesTime > 0)
             {
-                FeedPheromonesTime -= 1;
-                if(FeedPheromonesTime % 10 == 0) this.DischargePheromones(feedpheromones);
+                PheromonesTime -= 1;
+                if(HasFeed && PheromonesTime % 10 == 0) this.DischargePheromones(feedpheromones);
             }
         }
 
@@ -65,11 +65,17 @@ namespace AntSimulation
                 }
                 // tmp = (tmp / (transforms.Length + 1)).normalized * speedscale;
                 // print(transforms.Length);
+                if (!HasFeed)
+                {
+                    float n = Random.Range(0.5f - randomwidth, randomwidth + 0.5f) * Mathf.PI;
+                    tmp += (Mathf.Cos((n)) * self.right + Mathf.Sin(n) * self.forward) * randomscale;
+                }
             }
-            
-            float n = Random.Range(0.5f - randomwidth, randomwidth + 0.5f) * Mathf.PI;
-            tmp += (Mathf.Cos((n)) * self.right + Mathf.Sin(n) * self.forward) * randomscale;
-            
+            else
+            {
+                float k = Random.Range(0.5f - randomwidth, randomwidth + 0.5f) * Mathf.PI;
+                tmp += (Mathf.Cos((k)) * self.right + Mathf.Sin(k) * self.forward) * randomscale;
+            }
 
             //print(tmp);
             //緑軸方向成分を消去
@@ -103,14 +109,14 @@ namespace AntSimulation
                 //餌を発見
                 var newFeed = feedContainer.Fetch();
                 this.feed = newFeed;
-                feed.transform.parent = this.transform; 
+                feed.transform.parent = this.transform;
                 
                 this.transform.rotation = Quaternion.LookRotation(-self.forward, self.up);
                 this.DischargePheromones(feedpheromones);
                 this.DischargePheromones(feedpheromones);
                 this.DischargePheromones(feedpheromones);
                 this.DischargePheromones(feedpheromones);
-                FeedPheromonesTime += 500;
+                PheromonesTime += 500;
             }
             else
             {
