@@ -71,7 +71,7 @@ namespace AntSimulation
                  GameObject.Destroy(this.transform.GetChild(this.transform.childCount-1).gameObject); 
                 }
                 ant.feed = null;
-                ant.HP = 50;
+                ant.HP += 20;
                 ant.transform.rotation = Quaternion.LookRotation(-ant.transform.forward, ant.transform.up);
                
                 canSpawn++;

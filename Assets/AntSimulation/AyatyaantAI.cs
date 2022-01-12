@@ -17,7 +17,7 @@ namespace AntSimulation
 
         //ランダムに動く範囲のスケール
         [SerializeField, Range(0.0f, 0.5f)] float randomwidth = 0.01f;
-        private int i=0;
+        
         //ランダムに動く大きさのスケール
         [SerializeField] float randomscale = 0.01f;
         //餌を発見したときのランダムさ
@@ -25,16 +25,18 @@ namespace AntSimulation
         //餌を発見したときの寿命長めのフェロモン
         [SerializeField] private GameObject feedpheromones;
         private Vector3 rotated =new Vector3(0,0,0);
+
+        
         private void start(){
             this.DischargePheromones(feedpheromones);
         }
         private void Update()
         {
-            if (feed&&i==0)
+            if (feed)
             {
                 this.feed.transform.position = this.transform.position + new Vector3(0, 0.02f, 0);
-                i=(i+1)%2;
             }
+           
         }
 
         /// <summary>
@@ -46,9 +48,13 @@ namespace AntSimulation
             Transform self = this.transform; //蟻の位置
 
             Vector3 tmp = new Vector3(0, 0, 0);
-            if(feed){
+            if(feed&&Random.value<0.5){
                 this.DischargePheromones(feedpheromones);
             }
+            if(Random.value<0.25){
+             this.DischargePheromones(feedpheromones);
+            
+            } 
             foreach (var i in transforms)
             {
                 //フェロモンの重心の相対位置tmp

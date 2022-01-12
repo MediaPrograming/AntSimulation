@@ -124,11 +124,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 428133239126229902, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: viewAngle
-      value: 100
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 428133239126229902, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: viewRadius
-      value: 2.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 513111184777635881, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: m_Layer
@@ -184,7 +184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2148064896503800975, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: viewAngle
-      value: 132
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 2148064896503800975, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: viewRadius
@@ -420,14 +420,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ab1ec98a09301408508bb4483c774a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 5
+  HP: 20
   feed: {fileID: 0}
   pheromonesSearcher: {fileID: 8849548452447358860}
   feedSearcher: {fileID: 6844201305944890709}
   enemySearcher: {fileID: 2437377338144249017}
   speedscale: 0.01
   randomwidth: 0.1
-  randomscale: 0.01
+  randomscale: 2.5
   feedpheromones: {fileID: 8408890724172061497, guid: 88c0bb16ac9d7a54a83d1d73189b2d86, type: 3}
 --- !u!114 &8849548452447358860
 MonoBehaviour:
