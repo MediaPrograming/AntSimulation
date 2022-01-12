@@ -53,7 +53,7 @@ namespace AntSimulation
             yield return new WaitForSeconds(5);
             //StartCoroutine(ChangeDir());
         }
-        void OnDestory(){        
+        void OnDestroy(){        
             
             for( int i=0; i < this.transform.childCount; ++i ){
             GameObject.Destroy( this.transform.GetChild( i ).gameObject );
