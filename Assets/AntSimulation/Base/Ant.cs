@@ -1,20 +1,23 @@
-﻿using UnityEditor;
+﻿using System;
+using System.Security.Cryptography;
 using UnityEngine;
 
-namespace AntSimulation
+namespace AntSimulation.Base
 {
     /// <summary>
     /// アリのプレハブにつける
     /// </summary>
-    public abstract class Ant : MonoBehaviour
+    public abstract class Ant : MonoBehaviour, IFreeAgentItem
     {
-        public int HP = 10;
-        public Feed feed;
+        public bool CanWalk { get; set; } = true;
+        public int HP = 20;
+        public double stamina = 100.0;
+        public Feed feed { get; set; }
         public bool HasFeed => feed != null;
         [SerializeField] private TargetSearcher pheromonesSearcher;
         [SerializeField] private TargetSearcher feedSearcher;
         [SerializeField] private TargetSearcher enemySearcher;
-
+        
         private void Start()
         {
             pheromonesSearcher.OnFindTargets += OnFindPheromones;
@@ -44,6 +47,15 @@ namespace AntSimulation
             var go = Instantiate(pheromones);
             go.transform.position = pos;
             return go;
+        }
+
+
+        private void OnDestroy()
+        {
+            if (feed)
+            {
+                Destroy(feed);
+            }
         }
     }
 }

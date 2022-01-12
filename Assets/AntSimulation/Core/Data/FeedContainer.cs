@@ -9,6 +9,7 @@ namespace AntSimulation
     {
         private Queue<Feed> feeds;
 
+        public event Action OnDestroyEvent;
         private void Start()
         {
             // 初期化
@@ -22,8 +23,18 @@ namespace AntSimulation
         private void Update()
         {
             if (feeds.Count == 0)
+            {
+               
                 Destroy(this.gameObject);
+            }
         }
+
+        private void OnDestroy()
+        {
+            OnDestroyEvent?.Invoke();
+        }
+
+        public bool IsEmpty => !(feeds != null && feeds.Count > 0);
 
         public Feed Fetch()
         {

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using AntSimulation.Base;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,7 +14,7 @@ namespace AntSimulation
         // Start is called before the first frame update
         // Update is called once per frame
         //進みたい向きのスケール(使わなそう)
-        [SerializeField] float speedscale = 0.01f;
+        //[SerializeField] float speedscale = 0.01f;
 
         //ランダムに動く範囲のスケール
         [SerializeField, Range(0.0f, 0.5f)] float randomwidth = 0.01f;
@@ -25,7 +26,7 @@ namespace AntSimulation
         [SerializeField] private GameObject feedpheromones;
         
         //フェロモン大放出期間
-        private int FeedPheromonesTime = 0;
+        private int PheromonesTime = 0;
 
         private bool b_onFindFeed = false;
         
@@ -36,10 +37,10 @@ namespace AntSimulation
                 this.feed.transform.position = this.transform.position + new Vector3(0, 0.02f, 0);
             }
 
-            if (FeedPheromonesTime > 0)
+            if (PheromonesTime > 0)
             {
-                FeedPheromonesTime -= 1;
-                if(FeedPheromonesTime % 30 == 0) this.DischargePheromones(feedpheromones);
+                PheromonesTime -= 1;
+                if(HasFeed && PheromonesTime % 10 == 0) this.DischargePheromones(feedpheromones);
             }
         }
 
@@ -63,14 +64,18 @@ namespace AntSimulation
                     //フェロモンの重心の相対位置tmp
                     tmp += (i.position - self.position);
                 }
-                Debug.Log("Pheromones<o><o>");
                 // tmp = (tmp / (transforms.Length + 1)).normalized * speedscale;
                 // print(transforms.Length);
+                if (!HasFeed)
+                {
+                    float n = Random.Range(0.5f - randomwidth, randomwidth + 0.5f) * Mathf.PI;
+                    tmp += (Mathf.Cos((n)) * self.right + Mathf.Sin(n) * self.forward) * randomscale;
+                }
             }
             else
             {
-                float n = Random.Range(0.5f - randomwidth, randomwidth + 0.5f) * Mathf.PI;
-                tmp += (Mathf.Cos((n)) * self.right + Mathf.Sin(n) * self.forward) * randomscale;
+                float k = Random.Range(0.5f - randomwidth, randomwidth + 0.5f) * Mathf.PI;
+                tmp += (Mathf.Cos((k)) * self.right + Mathf.Sin(k) * self.forward) * randomscale;
             }
 
             //print(tmp);
@@ -81,6 +86,7 @@ namespace AntSimulation
 
         public override void OnFindFeed(Transform[] feeds)
         {
+            if(!this) return;
             b_onFindFeed = false;
             //餌を持っている場合
             if (feed) return;
@@ -102,18 +108,18 @@ namespace AntSimulation
 
             if (distance < 1f)
             {
-                Debug.Log("Feeds<o><o>");
                 //餌を発見
+                if(feedContainer.IsEmpty) return;
                 var newFeed = feedContainer.Fetch();
                 this.feed = newFeed;
-                feed.transform.parent = this.transform; 
+                feed.transform.parent = this.transform;
                 
                 this.transform.rotation = Quaternion.LookRotation(-self.forward, self.up);
                 this.DischargePheromones(feedpheromones);
                 this.DischargePheromones(feedpheromones);
                 this.DischargePheromones(feedpheromones);
                 this.DischargePheromones(feedpheromones);
-                FeedPheromonesTime += 300;
+                PheromonesTime += 500;
             }
             else
             {

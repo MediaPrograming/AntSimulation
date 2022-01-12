@@ -5,7 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
+using AntSimulation.Base;
 namespace AntSimulation
 {
     public class AyatyarandomantAI : Ant
