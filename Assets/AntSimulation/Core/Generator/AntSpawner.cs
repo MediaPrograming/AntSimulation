@@ -3,32 +3,38 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AntSimulation.Base;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace AntSimulation
 {
-    public class AntSpawner : MonoBehaviour
+    public class AntSpawner : Generator<Ant>
     {
-        [SerializeField] private GameObject antPrefab;
-        public event Action<Ant> OnGenerate;
-
-        public int canSpawn = 50;
-
         [SerializeField] private float spawnerRadius = 0.5f;
-        
-        [SerializeField] private float spawnRate = 3;
-
         [SerializeField] private float viewRadius = 1f;
         [SerializeField] private LayerMask antLayerMask;
         [SerializeField] private Material _spawnerFeed;
-        
+
         private readonly List<Ant> RestAnts = new List<Ant>();
-        private void Start()
+
+        public event Action<Ant> OnGenerateEvent;
+
+        private new void Start()
         {
-            StartCoroutine(Spawn());
+            base.Start();
             StartCoroutine(nameof(FindTargetsWithDelay), .2f);
         }
+
+        protected override void OnGenerate(Ant t)
+        {
+            t.transform.position = this.transform.position + CreateRandomXZ(spawnerRadius);
+            t.transform.Rotate(0, Random.Range(-10.0f, 10.0f), 0);
+            
+            OnGenerateEvent?.Invoke(t);
+        }
+
+     
 
         private void Update()
         {
@@ -43,10 +49,9 @@ namespace AntSimulation
                     removeList.Add(ant);
                 }
             }
+
             foreach (var fullAnt in removeList)
-            {
                 RestAnts.Remove(fullAnt);
-            }
         }
 
         IEnumerator FindTargetsWithDelay(float delay)
@@ -57,8 +62,8 @@ namespace AntSimulation
                 FindVisibleTargets();
             }
         }
-        
-        
+
+
         /// <summary>
         /// ターゲットのリストの更新
         /// </summary>
@@ -66,41 +71,23 @@ namespace AntSimulation
         {
             // ReSharper disable once Unity.PreferNonAllocApi
             var ants = Physics.OverlapSphere(transform.position, viewRadius, antLayerMask);
-            
-            foreach (var ant in ants.Select(x => x.GetComponent<Ant>()))
+
+            foreach (var ant in ants)
             {
-                RestAnts.Add(ant);
-                ant.CanWalk = false;
-                if (ant.HasFeed)
+                var item = ant.GetComponent<Ant>();
+                if (!item) continue;
+                RestAnts.Add(item);
+                item.CanWalk = false;
+                if (item.HasFeed)
                 {
                     // 蟻の餌を回収
-                    var feed = ant.feed;
+                    var feed = item.feed;
                     feed.transform.parent = this.transform;
                     feed.GetComponent<MeshRenderer>().material = _spawnerFeed;
-                    ant.feed = null;
+                    item.feed = null;
                     canSpawn += 3;
                 }
             }
-        }
-
-
-        /// <summary>
-        /// アリ生成用関数
-        /// </summary>
-        private IEnumerator Spawn()
-        {
-            if (canSpawn > 0)
-            {
-                var newAnt = GameObject.Instantiate(antPrefab).GetComponent<Ant>();
-                newAnt.transform.position = this.transform.position +
-                                            new Vector3(Random.Range(-spawnerRadius, spawnerRadius), 0, Random.Range(-spawnerRadius, spawnerRadius));
-                newAnt.transform.Rotate(0, Random.Range(-10.0f, 10.0f), 0);
-                OnGenerate?.Invoke(newAnt);
-                canSpawn -= 1;
-            }
-
-            yield return new WaitForSeconds(spawnRate);
-            StartCoroutine(Spawn());
         }
     }
 }

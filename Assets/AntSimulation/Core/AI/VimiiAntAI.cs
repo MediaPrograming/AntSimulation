@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using AntSimulation.Base;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,7 +14,7 @@ namespace AntSimulation
         // Start is called before the first frame update
         // Update is called once per frame
         //進みたい向きのスケール(使わなそう)
-        [SerializeField] float speedscale = 0.01f;
+        //[SerializeField] float speedscale = 0.01f;
 
         //ランダムに動く範囲のスケール
         [SerializeField, Range(0.0f, 0.5f)] float randomwidth = 0.01f;
@@ -28,7 +29,7 @@ namespace AntSimulation
         private int PheromonesTime = 0;
 
         private bool b_onFindFeed = false;
-        
+
         private void Update()
         {
             if (feed)
@@ -85,6 +86,7 @@ namespace AntSimulation
 
         public override void OnFindFeed(Transform[] feeds)
         {
+            if(!this) return;
             b_onFindFeed = false;
             //餌を持っている場合
             if (feed) return;
@@ -107,6 +109,7 @@ namespace AntSimulation
             if (distance < 1f)
             {
                 //餌を発見
+                if(feedContainer.IsEmpty) return;
                 var newFeed = feedContainer.Fetch();
                 this.feed = newFeed;
                 feed.transform.parent = this.transform;
