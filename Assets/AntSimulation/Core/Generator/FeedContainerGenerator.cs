@@ -9,11 +9,12 @@ namespace AntSimulation
     public class FeedContainerGenerator : Generator<FeedContainer>
     {
         [SerializeField] private float spawnerRadius;
-
+        
         protected override void OnGenerate(FeedContainer t)
         {
             //AntSpawnerと同様
             t.transform.position = this.transform.position + CreateRandomXZ(spawnerRadius);
+            t.OnDestroyEvent += () => this.canSpawn++;
         }
 
         private void OnDrawGizmos()

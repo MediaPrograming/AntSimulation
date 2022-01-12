@@ -14,7 +14,7 @@ PrefabInstance:
     - target: {fileID: 903306658, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: freeAgent
       value: 
-      objectReference: {fileID: 348572284473872444}
+      objectReference: {fileID: 3409669015506905247}
     - target: {fileID: 903306658, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -262,17 +262,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9219969161070950022, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
   m_PrefabInstance: {fileID: 348572284820901278}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &348572284473872444 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 903306658, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
-  m_PrefabInstance: {fileID: 348572284820901278}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8873650095627402008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced3ad6a41984e74a8a6be87b2464c87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4646096949029524914 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4948365457240725548, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
@@ -331,11 +320,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 20
   stamina: 100
-  feed: {fileID: 0}
   pheromonesSearcher: {fileID: 2321246649137856630}
   feedSearcher: {fileID: 288841953780044463}
   enemySearcher: {fileID: 4938107595294436167}
-  speedscale: 0.01
   randomwidth: 0.5
   randomscale: 6
   feedpheromones: {fileID: 8408890724172061497, guid: 88c0bb16ac9d7a54a83d1d73189b2d86, type: 3}

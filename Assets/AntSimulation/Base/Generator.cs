@@ -16,7 +16,7 @@ namespace AntSimulation.Base
         }
 
         protected abstract void OnGenerate(T t);
-            
+        
         
         /// <summary>
         /// 生成用関数
