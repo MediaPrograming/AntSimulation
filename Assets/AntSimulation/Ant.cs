@@ -16,9 +16,13 @@ namespace AntSimulation
         [SerializeField] private TargetSearcher pheromonesSearcher;
         [SerializeField] private TargetSearcher feedSearcher;
         [SerializeField] private TargetSearcher enemySearcher;
+
+        //反応閾値
+        [SerializeField] private float responseThreshold;
         
         private void Start()
         {
+            responseThreshold = Random.Range(0.0f, 1.0f);
             pheromonesSearcher.OnFindTargets += OnFindPheromones;
             feedSearcher.OnFindTargets += OnFindFeed;
             enemySearcher.OnFindTargets += OnFindEnemy;
