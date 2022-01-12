@@ -13,7 +13,7 @@ namespace AntSimulation
         protected override void OnGenerate(FeedContainer t)
         {
             //AntSpawnerと同様
-            t.transform.position = this.transform.position + CreateRandomXZ(spawnerRadius);
+            t.transform.position = this.transform.position + CreateRandomXZ(spawnerRadius)+new Vector3(0,0.5f,0);
             t.OnDestroyEvent += () => this.canSpawn++;
         }
 

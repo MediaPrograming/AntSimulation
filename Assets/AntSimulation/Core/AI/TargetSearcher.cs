@@ -25,14 +25,15 @@ namespace AntSimulation
         public MeshFilter meshFilter;
         private Mesh _viewMesh;
 
-
+        private IEnumerator _enumerator;
         void Start()
         {
 #if UNITY_EDITOR
             _viewMesh = new Mesh { name = "View Mesh" };
             meshFilter.mesh = _viewMesh;
 #endif
-            StartCoroutine(nameof(FindTargetsWithDelay), .2f);
+            _enumerator=this.FindTargetsWithDelay(.2f);    
+            StartCoroutine(_enumerator);
         }
 
 
@@ -158,6 +159,10 @@ namespace AntSimulation
 
             return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
         }
-         
+        void OnDestory(){        
+            StopAllCoroutines();
+            CancelInvoke();
+        }
+
     }
 }

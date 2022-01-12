@@ -51,7 +51,14 @@ namespace AntSimulation
             var y = UnityEngine.Random.Range(0f, 360f);
             this.transform.rotation = Quaternion.Euler(0f, y, 0f);
             yield return new WaitForSeconds(5);
-            StartCoroutine(ChangeDir());
+            //StartCoroutine(ChangeDir());
+        }
+        void OnDestory(){        
+            
+            for( int i=0; i < this.transform.childCount; ++i ){
+            GameObject.Destroy( this.transform.GetChild( i ).gameObject );
+            }
+            StopCoroutine(ChangeDir());
         }
     }
 }

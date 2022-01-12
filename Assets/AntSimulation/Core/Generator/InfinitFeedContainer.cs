@@ -14,9 +14,7 @@ namespace AntSimulation
             // 初期化
             feeds = new Queue<Feed>();
 
-            // 子オブジェクト中のFeedを取得する
-            var children = this.GetComponentsInChildren<Feed>();
-            foreach (var child in children) feeds.Enqueue(child);
+            // 子オブジェクト中を取得する
         }
 
         private void Update()
