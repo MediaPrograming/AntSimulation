@@ -1,7 +1,6 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace AntSimulation
+namespace AntSimulation.Base
 {
     /// <summary>
     /// アリのプレハブにつける

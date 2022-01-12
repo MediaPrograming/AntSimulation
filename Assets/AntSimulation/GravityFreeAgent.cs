@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using AntSimulation;
+using AntSimulation.Base;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
