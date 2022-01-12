@@ -8,7 +8,7 @@ namespace AntSimulation
         [SerializeField] AntSpawner antSpawner;
         void Awake()
         {
-            antSpawner.OnGenerate += antSimulator.Add;
+            antSpawner.OnGeneateEvent += antSimulator.Add;
         }
     }
 }

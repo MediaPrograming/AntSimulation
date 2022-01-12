@@ -18,18 +18,19 @@ namespace AntSimulation
 
         private readonly List<Ant> RestAnts = new List<Ant>();
 
+        public event Action<Ant> OnGeneateEvent;
         private new void Start()
         {
             base.Start();
             StartCoroutine(nameof(FindTargetsWithDelay), .2f);
+        }
 
-            OnGenerate += newAnt =>
-            {
-                newAnt.transform.position = this.transform.position +
-                                            new Vector3(Random.Range(-spawnerRadius, spawnerRadius), 0,
-                                                Random.Range(-spawnerRadius, spawnerRadius));
-                newAnt.transform.Rotate(0, Random.Range(-10.0f, 10.0f), 0);
-            };
+        protected override void OnGenerate(Ant t)
+        {
+            t.transform.position = this.transform.position +
+                                        new Vector3(Random.Range(-spawnerRadius, spawnerRadius), 0,
+                                            Random.Range(-spawnerRadius, spawnerRadius));
+            t.transform.Rotate(0, Random.Range(-10.0f, 10.0f), 0);
         }
 
         private void Update()

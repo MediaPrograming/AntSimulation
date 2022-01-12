@@ -9,24 +9,28 @@ namespace AntSimulation.Base
         [SerializeField] protected GameObject prefab;
         [SerializeField] protected int canSpawn;
         [SerializeField] protected float spawnRate;
-        public event Action<T> OnGenerate;
+    
         public void Start()
         {
             StartCoroutine(Spawn());
         }
 
+        protected abstract void OnGenerate(T t);
+            
+        
         /// <summary>
         /// 生成用関数
+        /// デフォルトでスポナー位置にスポーンする
         /// </summary>
         private IEnumerator Spawn()
         {
             if (canSpawn > 0)
             {
-                var t = GameObject.Instantiate(prefab).GetComponent<T>();
+                var t = GameObject.Instantiate(prefab, this.transform.position, Quaternion.identity).GetComponent<T>();
                 canSpawn -= 1;
                 
                 //イベントのコール
-                OnGenerate?.Invoke(t);
+                OnGenerate(t);
             }
 
             yield return new WaitForSeconds(spawnRate);
