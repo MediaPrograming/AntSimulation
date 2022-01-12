@@ -14,7 +14,7 @@ namespace AntSimulation
         // Start is called before the first frame update
         // Update is called once per frame
         //進みたい向きのスケール(使わなそう)
-        [SerializeField] float speedscale = 0.01f;
+        //[SerializeField] float speedscale = 0.01f;
 
         //ランダムに動く範囲のスケール
         [SerializeField, Range(0.0f, 0.5f)] float randomwidth = 0.01f;
