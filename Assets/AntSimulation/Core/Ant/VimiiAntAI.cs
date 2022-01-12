@@ -86,6 +86,7 @@ namespace AntSimulation
 
         public override void OnFindFeed(Transform[] feeds)
         {
+            if(!this) return;
             b_onFindFeed = false;
             //餌を持っている場合
             if (feed) return;
@@ -108,6 +109,7 @@ namespace AntSimulation
             if (distance < 1f)
             {
                 //餌を発見
+                if(feedContainer.IsEmpty) return;
                 var newFeed = feedContainer.Fetch();
                 this.feed = newFeed;
                 feed.transform.parent = this.transform;

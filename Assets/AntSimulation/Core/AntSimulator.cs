@@ -2,16 +2,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using AntSimulation.Base;
 using UnityEngine;
+using Random = System.Random;
 
 namespace AntSimulation
 {
     public class AntSimulator : MonoBehaviour
     {
         [SerializeField] private GameObject pheromones;
+        
+        /// <summary>
+        /// 適当にリスト管理
+        /// </summary>
         private readonly List<Ant> _ants = new List<Ant>();
-
+        private readonly List<Enemy> _enemies = new List<Enemy>();
         private void Start()
         {
             StartCoroutine(Discharge());
@@ -24,9 +30,20 @@ namespace AntSimulation
         {
             if (!_ants.Contains(ant)) _ants.Add(ant);
         }
-
+        /// <summary>
+        /// 敵登録用関数
+        /// </summary>
+        public void Add(Enemy enemy)
+        {
+            if (!_enemies.Contains(enemy)) _enemies.Add(enemy);
+        }
+        
         private void Update()
         {
+            
+            ////////////////////////////////////
+            // 蟻
+            /////////////////////////////////////
             foreach (var ant in _ants)
             {
                 if(ant.CanWalk == true) ant.stamina -= Time.deltaTime;
@@ -35,6 +52,31 @@ namespace AntSimulation
                     ant.stamina = 0.0;
                     ant.CanWalk = false;
                 }
+            }
+
+            ////////////////////////////////////
+            // 敵
+            // 敵性オブジェクトも蟻と同じ実装でいっかな
+            /////////////////////////////////////
+         
+            List<Enemy> removableList = new List<Enemy>(); 
+            foreach (var enemy in _enemies)
+            {
+                if(enemy.CanWalk) enemy.stamina -= Time.deltaTime;
+                
+                if (enemy.stamina <= 0)
+                {
+                    enemy.stamina = 0;
+                    enemy.CanWalk = false;
+                    removableList.Add(enemy);
+                }
+            }
+            
+            foreach (var enemy in removableList)
+            {
+                _enemies.Remove(enemy);
+                //削除
+                Destroy(enemy);
             }
         }
 

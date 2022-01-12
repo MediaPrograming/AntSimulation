@@ -37,5 +37,11 @@ namespace AntSimulation.Base
             StartCoroutine(Spawn());
         }
 
+        public static Vector3 CreateRandomXZ(float radius)
+        {
+            var x = UnityEngine.Random.Range(-radius, radius);
+            var z = UnityEngine.Random.Range(-radius, radius);
+            return new Vector3(x, 0, z);
+        }
     }
 }

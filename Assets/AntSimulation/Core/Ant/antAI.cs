@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
 using AntSimulation.Base;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace AntSimulation
 {
-    public class VimiiAnt : Ant
+    public class antAI : Ant
     {
         // Start is called before the first frame update
         // Update is called once per frame
@@ -24,7 +19,7 @@ namespace AntSimulation
 
         //餌を発見したときの寿命長めのフェロモン
         [SerializeField] private GameObject feedpheromones;
-        
+
         private void Update()
         {
             if (feed)
@@ -88,6 +83,7 @@ namespace AntSimulation
             if (distance < 1f)
             {
                 //餌を発見
+                if(feedContainer.IsEmpty) return;
                 var newFeed = feedContainer.Fetch();
                 this.feed = newFeed;
                 feed.transform.parent = this.transform; 
@@ -101,20 +97,21 @@ namespace AntSimulation
             else
             {
                 //一番近い餌の方向を向く
-                this.transform.rotation =
-                    Quaternion.LookRotation((feedContainer.transform.position - self.position).normalized, self.up);
+                var direction = (feedContainer.transform.position - self.position).normalized;
+                transform.LookAt( this.transform.position + direction);
             }
         }
 
         public override void OnFindEnemy(Transform[] enemies)
         {
-            Debug.Log("hofhoeh");
+            if(enemies.Length == 0 ) return;
+          
             
             Vector3 direction = new Vector3(0f, 0f,0f);
             foreach (var enemy in enemies)
                 direction += this.transform.position - enemy.transform.position;
        
-            transform.LookAt(direction.normalized);
+            transform.LookAt(this.transform.position + direction.normalized);
             // ここにSetRotation
         }
     }

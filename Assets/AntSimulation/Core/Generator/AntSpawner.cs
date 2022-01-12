@@ -18,7 +18,8 @@ namespace AntSimulation
 
         private readonly List<Ant> RestAnts = new List<Ant>();
 
-        public event Action<Ant> OnGeneateEvent;
+        public event Action<Ant> OnGenerateEvent;
+
         private new void Start()
         {
             base.Start();
@@ -27,11 +28,13 @@ namespace AntSimulation
 
         protected override void OnGenerate(Ant t)
         {
-            t.transform.position = this.transform.position +
-                                        new Vector3(Random.Range(-spawnerRadius, spawnerRadius), 0,
-                                            Random.Range(-spawnerRadius, spawnerRadius));
+            t.transform.position = this.transform.position + CreateRandomXZ(spawnerRadius);
             t.transform.Rotate(0, Random.Range(-10.0f, 10.0f), 0);
+            
+            OnGenerateEvent?.Invoke(t);
         }
+
+     
 
         private void Update()
         {
@@ -72,7 +75,7 @@ namespace AntSimulation
             foreach (var ant in ants)
             {
                 var item = ant.GetComponent<Ant>();
-                if(!item) continue;
+                if (!item) continue;
                 RestAnts.Add(item);
                 item.CanWalk = false;
                 if (item.HasFeed)

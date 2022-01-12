@@ -4,11 +4,13 @@ namespace AntSimulation
 {
     public class AntController : MonoBehaviour
     {
-        [SerializeField] AntSimulator antSimulator;
-        [SerializeField] AntSpawner antSpawner;
+        [SerializeField] private AntSimulator antSimulator;
+        [SerializeField] private AntSpawner antSpawner;
+        [SerializeField] private EnemyGenerator enemyGenerator;
         void Awake()
         {
-            antSpawner.OnGeneateEvent += antSimulator.Add;
+            antSpawner.OnGenerateEvent += antSimulator.Add;
+            enemyGenerator.OnGenerateEvent += antSimulator.Add;
         }
     }
 }

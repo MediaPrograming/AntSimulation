@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using AntSimulation;
-using AntSimulation.Base;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,23 +5,30 @@ namespace AntSimulation
 {
     public class GravityFreeAgent : MonoBehaviour
     {
-        [SerializeField] Transform CenterOfBalance; // 重心
-
         public float movableDist = 1.0f;
-        public float rayOffset = 0.02f;
-        private Ant thisAnt;
+        // public float rayOffset = 0.02f;
 
+        [SerializeField] Transform CenterOfBalance; // 重心
+        [SerializeField] private MonoBehaviour freeAgent;
         [SerializeField] private LayerMask groundLayerMask;
 
-        void Start()
-        {
-            thisAnt = this.GetComponent<Ant>();
-        }
+        private IFreeAgentItem _freeAgent;
 
+        private void Start()
+        {
+            var freeAgentItem = freeAgent.GetComponent<IFreeAgentItem>();
+            if (freeAgentItem == null)
+            {
+                Debug.LogError("オブジェクトをアタッチするか、インタフェースを実装しているか確認してください");
+            }
+            _freeAgent = freeAgentItem;
+        }
 
         void FixedUpdate()
         {
-            if (!thisAnt.CanWalk) return;
+            // null check
+            if(_freeAgent == null || !_freeAgent.CanWalk) return;
+            
             if (this.transform.position.y < 0) this.transform.position += this.transform.up * 0.01f;
             Ray ray = new Ray(CenterOfBalance.position + transform.up * 0.05f - transform.forward * 0.01f,
                 -transform.up + transform.forward);

@@ -13,9 +13,7 @@ namespace AntSimulation
         protected override void OnGenerate(FeedContainer t)
         {
             //AntSpawnerと同様
-            t.transform.position = this.transform.position +
-                                   new Vector3(Random.Range(-spawnerRadius, spawnerRadius), 0,
-                                       Random.Range(-spawnerRadius, spawnerRadius));
+            t.transform.position = this.transform.position + CreateRandomXZ(spawnerRadius);
         }
 
         private void OnDrawGizmos()
