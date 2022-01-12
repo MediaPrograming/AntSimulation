@@ -255,12 +255,7 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-    m_RemovedComponents:
-    - {fileID: 1413022856200557868, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
-=======
     m_RemovedComponents: []
->>>>>>> 56286c2e404af81cc80ee327210c7017efc343bb
   m_SourcePrefab: {fileID: 100100000, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
 --- !u!1 &8873650095627402008 stripped
 GameObject:
@@ -287,36 +282,17 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 5585548996506241563, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
   m_PrefabInstance: {fileID: 348572284820901278}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
---- !u!114 &288841953780044463
-=======
 --- !u!114 &4938107595294436167 stripped
->>>>>>> 56286c2e404af81cc80ee327210c7017efc343bb
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4634712079912478425, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
   m_PrefabInstance: {fileID: 348572284820901278}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
-  m_GameObject: {fileID: 1055201293280642068}
-=======
   m_GameObject: {fileID: 0}
->>>>>>> 56286c2e404af81cc80ee327210c7017efc343bb
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7298d34b792225c49aa682b8fa9ee998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  viewRadius: 1.52
-  viewAngle: 140
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 64
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 1
-  meshFilter: {fileID: 5284336022568601477}
-=======
 --- !u!65 &2751170941732850626
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -350,7 +326,6 @@ MonoBehaviour:
   randomwidth: 0.5
   randomscale: 6
   feedpheromones: {fileID: 8408890724172061497, guid: 88c0bb16ac9d7a54a83d1d73189b2d86, type: 3}
->>>>>>> 56286c2e404af81cc80ee327210c7017efc343bb
 --- !u!114 &2321246649137856630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,42 +347,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   meshFilter: {fileID: 4545828542703870062}
---- !u!65 &2751170941732850626
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8873650095627402008}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.6024494, y: 3.959985, z: 8.746248}
-  m_Center: {x: -0.091135874, y: 1.4799929, z: -0.08139238}
---- !u!114 &3409669015506905247
+--- !u!114 &288841953780044463
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8873650095627402008}
+  m_GameObject: {fileID: 1055201293280642068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae0f1aa7f9fe91847bd686286041f2d5, type: 3}
+  m_Script: {fileID: 11500000, guid: 7298d34b792225c49aa682b8fa9ee998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  HP: 5
-  feed: {fileID: 0}
-  pheromonesSearcher: {fileID: 2321246649137856630}
-  feedSearcher: {fileID: 288841953780044463}
-  enemySearcher: {fileID: 8874938104075180867}
-  speedscale: 0.01
-  randomwidth: 0.3
-  randomscale: 0.1
-  feedpheromones: {fileID: 8408890724172061497, guid: 88c0bb16ac9d7a54a83d1d73189b2d86, type: 3}
-=======
   viewRadius: 4.32
   viewAngle: 83
   targetMask:
@@ -417,4 +368,3 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   meshFilter: {fileID: 5284336022568601477}
->>>>>>> 56286c2e404af81cc80ee327210c7017efc343bb

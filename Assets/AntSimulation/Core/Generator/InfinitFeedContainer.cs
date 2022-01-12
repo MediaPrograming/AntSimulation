@@ -24,6 +24,7 @@ namespace AntSimulation
             if (feeds.Count == 0)
                 Destroy(this.gameObject);
         }
+        public bool IsEmpty => !(feeds != null && feeds.Count > 0);
 
         public Feed Fetch()
         {
