@@ -10,6 +10,7 @@ namespace AntSimulation
         private Queue<Feed> feeds;
 
         public event Action OnDestroyEvent;
+
         private void Start()
         {
             // 初期化
@@ -24,7 +25,6 @@ namespace AntSimulation
         {
             if (feeds.Count == 0)
             {
-               
                 Destroy(this.gameObject);
             }
         }
@@ -34,6 +34,8 @@ namespace AntSimulation
             OnDestroyEvent?.Invoke();
         }
 
+        public float Count => feeds.Count;
+
         public bool IsEmpty => !(feeds != null && feeds.Count > 0);
 
         public Feed Fetch()
@@ -41,5 +43,4 @@ namespace AntSimulation
             return feeds.Dequeue();
         }
     }
-
 }

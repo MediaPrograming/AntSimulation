@@ -18,10 +18,16 @@ namespace AntSimulation
         [SerializeField] private GameObject pheromones;
         [SerializeField] private bool isRecord;
         private int phaseCount = 0;
+    
         [SerializeField] private int interval = 600;
         [SerializeField] private int captureInterval = 30;
         [SerializeField] private Text _text;
 
+
+        public bool IsRecording => isRecord;
+        public int PhaseCount => phaseCount;
+        public int Interval => interval;
+        public int CaptureInterval => captureInterval;
         /// <summary>
         /// 適当にリスト管理
         /// </summary>
@@ -32,7 +38,6 @@ namespace AntSimulation
         private List<Pheromones> _pheromones = new List<Pheromones>();
 
         private GameObject _spawner;
-
         public event Action<GameObject> OnRestart;
         private void Start()
         {
