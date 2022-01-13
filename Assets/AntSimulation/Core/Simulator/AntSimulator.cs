@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using AntSimulation.Base;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = System.Random;
 
 namespace AntSimulation
@@ -14,6 +16,11 @@ namespace AntSimulation
     {
         [SerializeField] private GameObject Spawner;
         [SerializeField] private GameObject pheromones;
+        [SerializeField] private bool isRecord;
+        private int phaseCount = 0;
+        [SerializeField] private int interval = 600;
+        [SerializeField] private int captureInterval = 30;
+        [SerializeField] private Text _text;
 
         /// <summary>
         /// 適当にリスト管理
@@ -29,14 +36,25 @@ namespace AntSimulation
 
         private void Start()
         {
-            Restart();
+            StartCoroutine(Restart());
+            StartCoroutine(Capture());
         }
 
+        public IEnumerator Capture()
+        {
+            if (isRecord)
+            {
+                CaptureScreenshot();
+            }
 
-        public void Restart()
+            yield return new WaitForSeconds(captureInterval);
+        }
+
+        public IEnumerator Restart()
         {
             StopCoroutine(Discharge());
-            foreach (var p in _pheromones) if (p) Destroy(p.gameObject);
+            foreach (var p in _pheromones) 
+                if (p) Destroy(p.gameObject);
             if (_spawner) Destroy(_spawner);
             _ants = new List<Ant>();
             _enemies = new List<Enemy>();
@@ -46,6 +64,11 @@ namespace AntSimulation
             OnRestart?.Invoke(_spawner);
 
             StartCoroutine(Discharge());
+
+            _text.text = $"Phase {phaseCount.ToString()}";
+            phaseCount++;
+            yield return new WaitForSeconds(interval);
+            StartCoroutine(Restart());
         }
 
         /// <summary>
@@ -53,7 +76,6 @@ namespace AntSimulation
         /// </summary>
         public void Add(Ant ant)
         {
-            Debug.Log(ant.name);
             if (!_ants.Contains(ant))
                 _ants.Add(ant);
         }
@@ -135,19 +157,45 @@ namespace AntSimulation
             yield return new WaitForSeconds(5);
             StartCoroutine(Discharge());
         }
-    }
 
-    [CustomEditor(typeof(AntSimulator))]
-    public class AntSimulatorEditor : Editor
-    {
-        public override void OnInspectorGUI()
+        [MenuItem("Tools/Screenshot %F3", false)]
+        public static void CaptureScreenshot()
         {
-            base.OnInspectorGUI();
-            if (GUILayout.Button("Restart"))
+            string productName = Application.productName;
+            if (string.IsNullOrEmpty(productName))
             {
-                var s = target as AntSimulator;
-                if (s != null) s.Restart();
+                productName = "Unity";
             }
+
+            string directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory),
+                productName);
+            DateTime now = DateTime.Now;
+            string fileName = string.Format("{0}_{1}x{2}_{3}{4:D2}{5:D2}{6:D2}{7:D2}{8:D2}.png", productName,
+                Screen.width,
+                Screen.height, now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second);
+            string path = Path.Combine(directory, fileName);
+
+            if (!Directory.Exists(directory))
+            {
+                Directory.CreateDirectory(directory);
+            }
+
+            ScreenCapture.CaptureScreenshot(path);
+            Debug.LogFormat("Screenshot Save : {0}", path);
         }
     }
+    //
+    // [CustomEditor(typeof(AntSimulator))]
+    // public class AntSimulatorEditor : Editor
+    // {
+    //     public override void OnInspectorGUI()
+    //     {
+    //         base.OnInspectorGUI();
+    //         if (GUILayout.Button("Restart"))
+    //         {
+    //             var s = target as AntSimulator;
+    //             if (s != null) s.Restart();
+    //         }
+    //     }
+    // }
 }

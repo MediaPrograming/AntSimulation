@@ -1132,7 +1132,8 @@ MonoBehaviour:
   Spawner: {fileID: 1365860624240864774, guid: 31edb243b5ba921419b7793885c53b0b, type: 3}
   pheromones: {fileID: 8408890724172061497, guid: 88c0bb16ac9d7a54a83d1d73189b2d86, type: 3}
   isRecord: 1
-  interval: 30
+  interval: 600
+  captureInterval: 30
   _text: {fileID: 1613808170}
 --- !u!4 &2071929029
 Transform:
