@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5848994212724143535}
   - component: {fileID: 5848994212724143534}
   m_Layer: 6
-  m_Name: FeedContainer_Test001
+  m_Name: FeedContainer_Test001 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

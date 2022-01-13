@@ -35,14 +35,22 @@ namespace AntSimulation.SimulatorTest
                 _antSpawner.OnFeedChangeEvent += (count) =>
                 {
                     Count = count;
-                    SaveData(new[]
-                        { simulator.PhaseCount.ToString(), time.ToString(), container.Count.ToString(), Count.ToString() });
+                
+                    // SaveData(new[]
+                    //     { simulator.PhaseCount.ToString(), time.ToString(), container.Count.ToString(), Count.ToString() });
+                    if (count >= 8)
+                    {
+                        SaveData(new[]
+                            { simulator.PhaseCount.ToString(), time.ToString(), container.Count.ToString(), Count.ToString() });
+                        Debug.Log("Restart");
+                       simulator.Restart();
+                    }
                 };
 
                 container = Instantiate(feedContainer).GetComponent<FeedContainer>();
-                container.OnFeedChangeEvent += count =>
-                    SaveData(new[]
-                        { simulator.PhaseCount.ToString(), time.ToString(), container.Count.ToString(), Count.ToString() });
+                // container.OnFeedChangeEvent += count =>
+                //     SaveData(new[]
+                //         { simulator.PhaseCount.ToString(), time.ToString(), container.Count.ToString(), Count.ToString() });
             };
 
    
@@ -68,12 +76,19 @@ namespace AntSimulation.SimulatorTest
             sw = new StreamWriter(path, true, Encoding.GetEncoding("Shift_JIS"));
             WriteHeader();
 
-            StartCoroutine(Save());
+            //StartCoroutine(Save());
         }
 
         private void Update()
         {
             time += Time.deltaTime;
+
+            if (time >= simulator.Interval)
+            {
+                SaveData(new[]
+                    { simulator.PhaseCount.ToString(), time.ToString(), container.Count.ToString(), Count.ToString() });
+                simulator.Restart();
+            }
         }
 
         public void WriteHeader()

@@ -47,8 +47,10 @@ namespace AntSimulation.Base
         /// </summary>
         public GameObject DischargePheromones(GameObject pheromones)
         {
+            var generator = GameObject.FindWithTag("Generator");
             var pos = this.transform.position;
             var go = Instantiate(pheromones);
+            go.transform.parent = generator.transform;
             go.transform.position = pos;
             return go;
         }

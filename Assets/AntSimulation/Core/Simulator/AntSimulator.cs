@@ -35,13 +35,13 @@ namespace AntSimulation
         public List<Ant> _ants = new List<Ant>();
 
         private List<Enemy> _enemies = new List<Enemy>();
-        private List<Pheromones> _pheromones = new List<Pheromones>();
+
 
         private GameObject _spawner;
         public event Action<GameObject> OnRestart;
         private void Start()
         {
-            StartCoroutine(Restart());
+           Restart();
             StartCoroutine(Capture());
         }
 
@@ -57,15 +57,14 @@ namespace AntSimulation
             StartCoroutine(Capture());
         }
 
-        public IEnumerator Restart()
+        public void Restart()
         {
             StopCoroutine(Discharge());
-            foreach (var p in _pheromones) 
-                if (p) Destroy(p.gameObject);
+
             if (_spawner) Destroy(_spawner);
             _ants = new List<Ant>();
             _enemies = new List<Enemy>();
-            _pheromones = new List<Pheromones>();
+        
 
             _spawner = Instantiate(Spawner);
             OnRestart?.Invoke(_spawner);
@@ -74,8 +73,7 @@ namespace AntSimulation
 
             _text.text = $"Phase {phaseCount.ToString()}";
             phaseCount++;
-            yield return new WaitForSeconds(interval);
-            StartCoroutine(Restart());
+            
         }
 
         /// <summary>
@@ -139,7 +137,6 @@ namespace AntSimulation
 
         IEnumerator Discharge()
         {
-            Debug.Log("uouou");
             if (_ants.Count != 0)
             {
                 List<Ant> removeList = new List<Ant>();
@@ -156,7 +153,8 @@ namespace AntSimulation
                 {
                     // フェロモンの排出
                     var p = ant.DischargePheromones(pheromones);
-                    _pheromones.Add(p.GetComponent<Pheromones>());
+                
+            
                     //スタミナ切れの時はHPを消費して回復。
                     if (ant.stamina <= 0.0)
                     {
@@ -169,8 +167,15 @@ namespace AntSimulation
                     if (count < _ants.Count / 5) ant.CanWalk = true;
                     else if (count < _ants.Count * 4 / 5) ant.CanWalk = (UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f);
                     else ant.CanWalk = false;
+
+                    if (ant.HasFeed)
+                    {
+                        ant.CanWalk = true;
+                    }
+                    
                     count++;
                     if (ant.HP <= 0) removeList.Add(ant);
+                    
 
                 }
 
