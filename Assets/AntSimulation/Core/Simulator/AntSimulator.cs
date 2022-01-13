@@ -46,7 +46,9 @@ namespace AntSimulation
             /////////////////////////////////////
             foreach (var ant in _ants)
             {
+                //スタミナ減少
                 if(ant.CanWalk == true) ant.stamina -= Time.deltaTime;
+                //尽きたら動けない
                 if (ant.stamina <= 0.0)
                 {
                     ant.stamina = 0.0;
@@ -83,14 +85,6 @@ namespace AntSimulation
         IEnumerator Discharge()
         {
             List<Ant> removeList = new List<Ant>();
-            // foreach (var ant1 in _ants.OrderBy(ant=> ant.responseThreshold))
-            // {
-            //     Debug.Log(ant1.responseThreshold);
-            // }
-            var max = _ants.Max(ant => ant.responseThreshold);
-            var min = _ants.Min(ant=>ant.responseThreshold);
-            var th02 = (max - min) * 0.2 + min;
-            var th08 = (max - min) * 0.8 + min;
             int count = 0;
             foreach (var ant in _ants.OrderBy(ant=> ant.responseThreshold))
             {
@@ -104,13 +98,13 @@ namespace AntSimulation
                 }
                 
                 //働きアリの法則
-                // if(count < _ants.Count / 5) ant.CanWalk = true;
-                // else if (count < _ants.Count * 4 / 5) ant.CanWalk = (UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f);
-                // else ant.CanWalk = false;
-                // count++;
+                if(count < _ants.Count / 5) ant.CanWalk = true;
+                else if (count < _ants.Count * 4 / 5) ant.CanWalk = (UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f);
+                else ant.CanWalk = false;
+                count++;
 
                 //社畜モード
-                ant.CanWalk = true;
+                // ant.CanWalk = true;
                 
                 if(ant.HP <= 0) removeList.Add(ant);
             }
