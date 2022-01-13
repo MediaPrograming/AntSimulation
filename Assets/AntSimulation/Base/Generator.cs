@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 namespace AntSimulation.Base
 {
-    public abstract class Generator<T> : MonoBehaviour
+    public abstract class Generator<T> : MonoBehaviour where T : MonoBehaviour
     {
         [SerializeField] protected GameObject prefab;
         [SerializeField] protected int canSpawn;
@@ -27,6 +28,8 @@ namespace AntSimulation.Base
             if (canSpawn > 0)
             {
                 var t = GameObject.Instantiate(prefab, this.transform.position, Quaternion.identity).GetComponent<T>();
+                // 子オブジェクトにする
+                t.transform.parent = this.transform;
                 canSpawn -= 1;
                 
                 //イベントのコール
