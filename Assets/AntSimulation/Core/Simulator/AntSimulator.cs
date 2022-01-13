@@ -104,10 +104,14 @@ namespace AntSimulation
                 }
                 
                 //働きアリの法則
-                if(count < _ants.Count / 5) ant.CanWalk = true;
-                else if (count < _ants.Count * 4 / 5) ant.CanWalk = (UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f);
-                else ant.CanWalk = false;
-                count++;
+                // if(count < _ants.Count / 5) ant.CanWalk = true;
+                // else if (count < _ants.Count * 4 / 5) ant.CanWalk = (UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f);
+                // else ant.CanWalk = false;
+                // count++;
+
+                //社畜モード
+                ant.CanWalk = true;
+                
                 if(ant.HP <= 0) removeList.Add(ant);
             }
             foreach (var ant in removeList)

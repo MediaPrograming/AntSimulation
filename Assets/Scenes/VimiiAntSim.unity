@@ -3046,7 +3046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d87aadfdd1c6455597b7bf484aedc8e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 3335148339561780070, guid: dfc8ad6cf7626e647beaee73e9974114, type: 3}
   canSpawn: 0
   spawnRate: 0
   spawnRadius: 0
@@ -5317,10 +5317,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c7e24139b6d433cb2da7396010fda2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
-  canSpawn: 0
-  spawnRate: 0
-  spawnerRadius: 0
+  prefab: {fileID: 1898933927669638048, guid: 1bb62ac8aec89db4287a1e9547c1f332, type: 3}
+  canSpawn: 5
+  spawnRate: 10
+  spawnerRadius: 20
 --- !u!4 &1576269376
 Transform:
   m_ObjectHideFlags: 0
@@ -7362,7 +7362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   antSimulator: {fileID: 2071929028}
   antSpawner: {fileID: 145092259}
-  enemyGenerator: {fileID: 0}
+  enemyGenerator: {fileID: 882063120}
 --- !u!114 &2071929028
 MonoBehaviour:
   m_ObjectHideFlags: 0

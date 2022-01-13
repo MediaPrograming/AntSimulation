@@ -15,7 +15,9 @@ namespace AntSimulation
         [SerializeField] private float viewRadius = 1f;
         [SerializeField] private LayerMask antLayerMask;
         [SerializeField] private Material _spawnerFeed;
+        [SerializeField] private int gatheredFeeds = 0;
 
+        public int GatheredFeeds => gatheredFeeds;
         private readonly List<Ant> RestAnts = new List<Ant>();
 
         public event Action<Ant> OnGenerateEvent;
@@ -44,7 +46,11 @@ namespace AntSimulation
                 ant.stamina += Time.deltaTime;
                 if (ant.stamina >= 100.0)
                 {
-                    ant.HP = 20;
+                    if (ant.HP < 10 && canSpawn > 0)
+                    {
+                        ant.HP = 20;
+                        canSpawn--;
+                    }
                     ant.CanWalk = true;
                     removeList.Add(ant);
                 }
@@ -86,6 +92,7 @@ namespace AntSimulation
                     feed.GetComponent<MeshRenderer>().material = _spawnerFeed;
                     item.feed = null;
                     canSpawn ++;
+                    gatheredFeeds++;
                 }
             }
         }
