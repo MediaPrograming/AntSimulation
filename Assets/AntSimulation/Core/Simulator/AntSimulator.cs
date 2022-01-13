@@ -83,11 +83,16 @@ namespace AntSimulation
         IEnumerator Discharge()
         {
             List<Ant> removeList = new List<Ant>();
+            // foreach (var ant1 in _ants.OrderBy(ant=> ant.responseThreshold))
+            // {
+            //     Debug.Log(ant1.responseThreshold);
+            // }
             var max = _ants.Max(ant => ant.responseThreshold);
             var min = _ants.Min(ant=>ant.responseThreshold);
             var th02 = (max - min) * 0.2 + min;
             var th08 = (max - min) * 0.8 + min;
-            foreach (var ant in _ants)
+            int count = 0;
+            foreach (var ant in _ants.OrderBy(ant=> ant.responseThreshold))
             {
                 // フェロモンの排出
                 _ = ant.DischargePheromones(pheromones);
@@ -99,10 +104,10 @@ namespace AntSimulation
                 }
                 
                 //働きアリの法則
-                if(ant.responseThreshold < th02) ant.CanWalk = true;
-                else if (ant.responseThreshold < th08) ant.CanWalk = (UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f);
+                if(count < _ants.Count / 5) ant.CanWalk = true;
+                else if (count < _ants.Count * 4 / 5) ant.CanWalk = (UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f);
                 else ant.CanWalk = false;
-                
+                count++;
                 if(ant.HP <= 0) removeList.Add(ant);
             }
             foreach (var ant in removeList)

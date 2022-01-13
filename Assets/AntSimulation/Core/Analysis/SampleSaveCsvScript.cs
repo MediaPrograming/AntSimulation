@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +16,11 @@ public class SampleSaveCsvScript : MonoBehaviour
     
     void Start()
     {
-        sw = new StreamWriter(@"SaveData.csv", true, Encoding.GetEncoding("Shift_JIS"));
+        var path = @"Analysis/Analysis" + "_" +
+                   DateTime.Now.Hour.ToString() + "_" +
+                   DateTime.Now.Minute.ToString() +
+                   ".csv";
+        sw = new StreamWriter(path, true, Encoding.GetEncoding("Shift_JIS"));
         string[] s1 = { "Working", "Lazy", "time" };
         string s2 = string.Join(",", s1);
         sw.WriteLine(s2);
