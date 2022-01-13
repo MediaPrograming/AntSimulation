@@ -53,6 +53,8 @@ namespace AntSimulation
             }
 
             yield return new WaitForSeconds(captureInterval);
+
+            StartCoroutine(Capture());
         }
 
         public IEnumerator Restart()

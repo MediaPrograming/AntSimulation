@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -12,11 +13,26 @@ namespace AntSimulation.SimulatorTest
     public class SimulatorTest01 : MonoBehaviour
     {
         [SerializeField] private AntSimulator simulator;
-        [SerializeField] private FeedContainer feedContainer;
+        [SerializeField] private GameObject feedContainer;
         private StreamWriter sw;
 
+        private FeedContainer container;
+
+        private float time;
         void Start()
         {
+            simulator.OnRestart += (_) =>
+            {
+                if(container)
+                    Destroy(container.gameObject);
+
+                time = 0f;
+                
+                container = Instantiate(feedContainer).GetComponent<FeedContainer>();
+                container.OnFeedChangeEvent += count =>
+                    SaveData(simulator.PhaseCount.ToString(), Time.time.ToString(), count.ToString());
+            };
+            
             string productName = Application.productName;
             if (string.IsNullOrEmpty(productName))
             {
@@ -39,14 +55,12 @@ namespace AntSimulation.SimulatorTest
             sw = new StreamWriter(path, true, Encoding.GetEncoding("Shift_JIS"));
             WriteHeader();
 
-            feedContainer.OnFeedChangeEvent += count =>
-                SaveData(simulator.PhaseCount.ToString(), Time.time.ToString(), count.ToString());
-
             StartCoroutine(Save());
         }
 
         private void Update()
         {
+            time += Time.deltaTime;
         }
 
         public void WriteHeader()
@@ -59,7 +73,7 @@ namespace AntSimulation.SimulatorTest
         IEnumerator Save()
         {
             if (simulator.IsRecording)
-                SaveData(simulator.PhaseCount.ToString(), Time.time.ToString(), feedContainer.Count.ToString());
+                SaveData(simulator.PhaseCount.ToString(),time.ToString(), container.Count.ToString());
 
             //写真を撮るタイミングに合わせる
             yield return new WaitForSeconds(simulator.CaptureInterval);
