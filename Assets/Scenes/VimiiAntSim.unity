@@ -430,6 +430,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   _spawnerFeed: {fileID: 2100000, guid: 4a1e37f0cb7d50d4fab75de9b7bb935d, type: 2}
+  gatheredFeeds: 0
 --- !u!4 &145092260
 Transform:
   m_ObjectHideFlags: 0
@@ -7404,6 +7405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   simulator: {fileID: 2071929028}
+  spawner: {fileID: 145092259}
 --- !u!1001 &2079925346
 PrefabInstance:
   m_ObjectHideFlags: 0
