@@ -19,6 +19,8 @@ namespace AntSimulation
         private readonly List<Ant> RestAnts = new List<Ant>();
 
         public event Action<Ant> OnGenerateEvent;
+        public event Action<int> OnFeedChangeEvent;
+        private int Count;
 
         private new void Start()
         {
@@ -86,6 +88,10 @@ namespace AntSimulation
                     feed.GetComponent<MeshRenderer>().material = _spawnerFeed;
                     item.feed = null;
                     canSpawn ++;
+
+
+                    Count++;
+                    OnFeedChangeEvent?.Invoke(Count);
                 }
             }
         }

@@ -14,25 +14,37 @@ namespace AntSimulation.SimulatorTest
     {
         [SerializeField] private AntSimulator simulator;
         [SerializeField] private GameObject feedContainer;
+        private AntSpawner _antSpawner;
         private StreamWriter sw;
 
         private FeedContainer container;
 
         private float time;
+        private int Count;
+
         void Start()
         {
-            simulator.OnRestart += (_) =>
+            simulator.OnRestart += (g) =>
             {
-                if(container)
+                if (container)
                     Destroy(container.gameObject);
 
+
                 time = 0f;
-                
+                _antSpawner = g.GetComponentInChildren<AntSpawner>();
                 container = Instantiate(feedContainer).GetComponent<FeedContainer>();
                 container.OnFeedChangeEvent += count =>
-                    SaveData(simulator.PhaseCount.ToString(), Time.time.ToString(), count.ToString());
+                    SaveData(new[]
+                        { simulator.PhaseCount.ToString(), time.ToString(), container.Count.ToString(), Count.ToString() });
             };
-            
+
+            _antSpawner.OnFeedChangeEvent += (count) =>
+            {
+                Count = count;
+                SaveData(new[]
+                    { simulator.PhaseCount.ToString(), time.ToString(), container.Count.ToString(), Count.ToString() });
+            };
+
             string productName = Application.productName;
             if (string.IsNullOrEmpty(productName))
             {
@@ -65,7 +77,7 @@ namespace AntSimulation.SimulatorTest
 
         public void WriteHeader()
         {
-            string[] s1 = { "Phase", "Time", "Count" };
+            string[] s1 = { "Phase", "Time", "FeedLeftCount", "SpawnerCount" };
             string s2 = string.Join(",", s1);
             sw.WriteLine(s2);
         }
@@ -73,17 +85,18 @@ namespace AntSimulation.SimulatorTest
         IEnumerator Save()
         {
             if (simulator.IsRecording)
-                SaveData(simulator.PhaseCount.ToString(),time.ToString(), container.Count.ToString());
+                SaveData(new[]
+                    { simulator.PhaseCount.ToString(), time.ToString(), container.Count.ToString(), Count.ToString() });
 
             //写真を撮るタイミングに合わせる
             yield return new WaitForSeconds(simulator.CaptureInterval);
             StartCoroutine(Save());
         }
 
-        public void SaveData(string txt1, string txt2, string txt3)
+        public void SaveData(string[] txt1)
         {
-            string[] s1 = { txt1, txt2, txt3 };
-            string s2 = string.Join(",", s1);
+            //string[] s1 = { txt1, txt2, txt3 };
+            string s2 = string.Join(",", txt1);
             sw.WriteLine(s2);
         }
 
