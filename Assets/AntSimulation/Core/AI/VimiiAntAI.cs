@@ -87,6 +87,7 @@ namespace AntSimulation
         public override void OnFindFeed(Transform[] feeds)
         {
             if(!this) return;
+            Debug.Log(feeds.Length);
             b_onFindFeed = false;
             //餌を持っている場合
             if (feed) return;
@@ -101,7 +102,7 @@ namespace AntSimulation
                 distance = Vector3.Distance(this.transform.position, feeds[i].position);
             }
 
-            var feedContainer = feeds[index].GetComponent<InfinitFeedContainer>();
+            var feedContainer = feeds[index].GetComponent<FeedContainer>();
             if (!feedContainer) return;
         
             Transform self = this.transform; //蟻の位置git 

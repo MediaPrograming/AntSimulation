@@ -9,6 +9,7 @@ namespace AntSimulation
     {
         private Queue<Feed> feeds;
 
+        public event Action<int> OnFeedChangeEvent;
         public event Action OnDestroyEvent;
 
         private void Start()
@@ -40,7 +41,9 @@ namespace AntSimulation
 
         public Feed Fetch()
         {
-            return feeds.Dequeue();
+            var feed = feeds.Dequeue();
+            OnFeedChangeEvent?.Invoke(feeds.Count);
+            return feed;
         }
     }
 }

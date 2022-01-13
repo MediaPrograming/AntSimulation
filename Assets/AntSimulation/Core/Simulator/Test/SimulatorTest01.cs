@@ -38,12 +38,15 @@ namespace AntSimulation.SimulatorTest
 
             sw = new StreamWriter(path, true, Encoding.GetEncoding("Shift_JIS"));
             WriteHeader();
+
+            feedContainer.OnFeedChangeEvent += count =>
+                SaveData(simulator.PhaseCount.ToString(), Time.time.ToString(), count.ToString());
+
             StartCoroutine(Save());
         }
 
         private void Update()
         {
-           //if()
         }
 
         public void WriteHeader()
@@ -60,6 +63,7 @@ namespace AntSimulation.SimulatorTest
 
             //写真を撮るタイミングに合わせる
             yield return new WaitForSeconds(simulator.CaptureInterval);
+            StartCoroutine(Save());
         }
 
         public void SaveData(string txt1, string txt2, string txt3)

@@ -95,6 +95,7 @@ namespace AntSimulation
 
         private void Update()
         {
+            if(_ants.Count == 0) return;
             ////////////////////////////////////
             // 蟻
             /////////////////////////////////////
@@ -136,42 +137,45 @@ namespace AntSimulation
 
         IEnumerator Discharge()
         {
-            List<Ant> removeList = new List<Ant>();
-            // foreach (var ant1 in _ants.OrderBy(ant=> ant.responseThreshold))
-            // {
-            //     Debug.Log(ant1.responseThreshold);
-            // }
-            var max = _ants.Max(ant => ant.responseThreshold);
-            var min = _ants.Min(ant=>ant.responseThreshold);
-            var th02 = (max - min) * 0.2 + min;
-            var th08 = (max - min) * 0.8 + min;
-            int count = 0;
-            foreach (var ant in _ants.OrderBy(ant=> ant.responseThreshold))
+            if (_ants.Count != 0)
             {
-                // フェロモンの排出
-                var p = ant.DischargePheromones(pheromones);
-                _pheromones.Add(p.GetComponent<Pheromones>());
-                //スタミナ切れの時はHPを消費して回復。
-                if (ant.stamina <= 0.0)
+                List<Ant> removeList = new List<Ant>();
+                // foreach (var ant1 in _ants.OrderBy(ant=> ant.responseThreshold))
+                // {
+                //     Debug.Log(ant1.responseThreshold);
+                // }
+                var max = _ants.Max(ant => ant.responseThreshold);
+                var min = _ants.Min(ant => ant.responseThreshold);
+                var th02 = (max - min) * 0.2 + min;
+                var th08 = (max - min) * 0.8 + min;
+                int count = 0;
+                foreach (var ant in _ants.OrderBy(ant => ant.responseThreshold))
                 {
-                    ant.HP -= 1;
-                    ant.stamina += 3.0;
+                    // フェロモンの排出
+                    var p = ant.DischargePheromones(pheromones);
+                    _pheromones.Add(p.GetComponent<Pheromones>());
+                    //スタミナ切れの時はHPを消費して回復。
+                    if (ant.stamina <= 0.0)
+                    {
+                        ant.HP -= 1;
+                        ant.stamina += 3.0;
+                    }
+
+
+                    //働きアリの法則
+                    if (count < _ants.Count / 5) ant.CanWalk = true;
+                    else if (count < _ants.Count * 4 / 5) ant.CanWalk = (UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f);
+                    else ant.CanWalk = false;
+                    count++;
+                    if (ant.HP <= 0) removeList.Add(ant);
+
                 }
 
-                
-                //働きアリの法則
-                if(count < _ants.Count / 5) ant.CanWalk = true;
-                else if (count < _ants.Count * 4 / 5) ant.CanWalk = (UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f);
-                else ant.CanWalk = false;
-                count++;
-                if(ant.HP <= 0) removeList.Add(ant);
-
-            }
-
-            foreach (var ant in removeList)
-            {
-                _ants.Remove(ant);
-                Destroy(ant.gameObject);
+                foreach (var ant in removeList)
+                {
+                    _ants.Remove(ant);
+                    Destroy(ant.gameObject);
+                }
             }
 
             yield return new WaitForSeconds(5);
