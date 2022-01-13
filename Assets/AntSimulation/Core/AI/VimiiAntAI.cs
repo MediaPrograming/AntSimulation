@@ -29,7 +29,7 @@ namespace AntSimulation
         private int PheromonesTime = 0;
 
         private bool b_onFindFeed = false;
-        
+
         private void Update()
         {
             if (feed)

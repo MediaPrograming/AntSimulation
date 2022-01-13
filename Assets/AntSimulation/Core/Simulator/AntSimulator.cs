@@ -25,7 +25,8 @@ namespace AntSimulation
         /// <summary>
         /// 適当にリスト管理
         /// </summary>
-        private List<Ant> _ants = new List<Ant>();
+
+        public List<Ant> _ants = new List<Ant>();
 
         private List<Enemy> _enemies = new List<Enemy>();
         private List<Pheromones> _pheromones = new List<Pheromones>();
@@ -33,7 +34,6 @@ namespace AntSimulation
         private GameObject _spawner;
 
         public event Action<GameObject> OnRestart;
-
         private void Start()
         {
             StartCoroutine(Restart());
@@ -132,7 +132,16 @@ namespace AntSimulation
         IEnumerator Discharge()
         {
             List<Ant> removeList = new List<Ant>();
-            foreach (var ant in _ants)
+            // foreach (var ant1 in _ants.OrderBy(ant=> ant.responseThreshold))
+            // {
+            //     Debug.Log(ant1.responseThreshold);
+            // }
+            var max = _ants.Max(ant => ant.responseThreshold);
+            var min = _ants.Min(ant=>ant.responseThreshold);
+            var th02 = (max - min) * 0.2 + min;
+            var th08 = (max - min) * 0.8 + min;
+            int count = 0;
+            foreach (var ant in _ants.OrderBy(ant=> ant.responseThreshold))
             {
                 // フェロモンの排出
                 var p = ant.DischargePheromones(pheromones);
@@ -144,8 +153,14 @@ namespace AntSimulation
                     ant.stamina += 3.0;
                 }
 
-                ant.CanWalk = true;
-                if (ant.HP <= 0) removeList.Add(ant);
+                
+                //働きアリの法則
+                if(count < _ants.Count / 5) ant.CanWalk = true;
+                else if (count < _ants.Count * 4 / 5) ant.CanWalk = (UnityEngine.Random.Range(0.0f, 1.0f) > 0.5f);
+                else ant.CanWalk = false;
+                count++;
+                if(ant.HP <= 0) removeList.Add(ant);
+
             }
 
             foreach (var ant in removeList)

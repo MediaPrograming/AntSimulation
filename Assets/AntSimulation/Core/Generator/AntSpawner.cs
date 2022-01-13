@@ -85,7 +85,7 @@ namespace AntSimulation
                     feed.transform.parent = this.transform;
                     feed.GetComponent<MeshRenderer>().material = _spawnerFeed;
                     item.feed = null;
-                    canSpawn += 3;
+                    canSpawn ++;
                 }
             }
         }
