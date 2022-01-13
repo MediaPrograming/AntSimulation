@@ -49,10 +49,10 @@ namespace AntSimulation
             Transform self = this.transform; //蟻の位置
 
             Vector3 tmp = new Vector3(0, 0, 0);
-            if(feed&&Random.value<0.5){
+            if(feed&&Random.value<0.3){
                 this.DischargePheromones(feedpheromones);
             }
-            if(Random.value<0.25){
+            if(Random.value<0.1){
              this.DischargePheromones(feedpheromones);
             
             } 
@@ -69,8 +69,8 @@ namespace AntSimulation
             float n;
              //改良餌を持っているとき
              if(feed){
-                n = Random.Range(0.5f - randomwidth*.1f, randomwidth*.1f + 0.5f) * Mathf.PI;
-                tmp += (Mathf.Cos(n) * self.right + Mathf.Sin(n) * self.forward) * randomscale*.1f;
+                n = Random.Range(0.5f - randomwidth*.5f, randomwidth*.5f + 0.5f) * Mathf.PI;
+                tmp += (Mathf.Cos(n) * self.right + Mathf.Sin(n) * self.forward) * randomscale*.5f;
             
              }else{
                 n = Random.Range(0.5f - randomwidth, randomwidth + 0.5f) * Mathf.PI;      

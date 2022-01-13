@@ -115,6 +115,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 903306658, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
+      propertyPath: freeAgent
+      value: 
+      objectReference: {fileID: 1247747032594390207}
+    - target: {fileID: 903306658, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -322,6 +326,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7781785945284103900, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 7822739082191128473, guid: 75148e1d737252b4aaa399c6df0ed2bf, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -421,7 +429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 20
-  feed: {fileID: 0}
+  stamina: 100
   pheromonesSearcher: {fileID: 8849548452447358860}
   feedSearcher: {fileID: 6844201305944890709}
   enemySearcher: {fileID: 2437377338144249017}

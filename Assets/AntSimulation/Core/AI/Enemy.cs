@@ -55,9 +55,10 @@ namespace AntSimulation
         }
         void OnDestroy(){        
             
-            for( int i=0; i < this.transform.childCount; ++i ){
-            GameObject.Destroy( this.transform.GetChild( i ).gameObject );
-            }
+           // for( int i=0; i < this.transform.childCount; ++i ){
+           // GameObject.Destroy( this.transform.GetChild( i ).gameObject );
+            //}
+            antSearcher.OnFindTargets -=Find;
             StopCoroutine(ChangeDir());
         }
     }

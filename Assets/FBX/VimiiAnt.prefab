@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7298d34b792225c49aa682b8fa9ee998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 3.03
+  viewRadius: 1
   viewAngle: 140
   targetMask:
     serializedVersion: 2
@@ -359,12 +359,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7298d34b792225c49aa682b8fa9ee998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 4.32
+  viewRadius: 1
   viewAngle: 83
   targetMask:
     serializedVersion: 2
     m_Bits: 64
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1
   meshFilter: {fileID: 5284336022568601477}
