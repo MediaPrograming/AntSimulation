@@ -32,19 +32,20 @@ namespace AntSimulation.SimulatorTest
 
                 time = 0f;
                 _antSpawner = g.GetComponentInChildren<AntSpawner>();
+                _antSpawner.OnFeedChangeEvent += (count) =>
+                {
+                    Count = count;
+                    SaveData(new[]
+                        { simulator.PhaseCount.ToString(), time.ToString(), container.Count.ToString(), Count.ToString() });
+                };
+
                 container = Instantiate(feedContainer).GetComponent<FeedContainer>();
                 container.OnFeedChangeEvent += count =>
                     SaveData(new[]
                         { simulator.PhaseCount.ToString(), time.ToString(), container.Count.ToString(), Count.ToString() });
             };
 
-            _antSpawner.OnFeedChangeEvent += (count) =>
-            {
-                Count = count;
-                SaveData(new[]
-                    { simulator.PhaseCount.ToString(), time.ToString(), container.Count.ToString(), Count.ToString() });
-            };
-
+   
             string productName = Application.productName;
             if (string.IsNullOrEmpty(productName))
             {

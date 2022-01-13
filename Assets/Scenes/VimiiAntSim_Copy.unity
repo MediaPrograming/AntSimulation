@@ -1131,7 +1131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   simulator: {fileID: 2071929028}
-  feedContainer: {fileID: 5848994212724143521, guid: ff9a5aa7963b6d743986a284cd614140, type: 3}
+  feedContainer: {fileID: 8771025770946151604, guid: fc0ac1c17751a5943a88e7747d18340f, type: 3}
 --- !u!114 &2071929028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1144,10 +1144,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb756aa7947465f952ab19ead0ace2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Spawner: {fileID: 8771025770946151604, guid: fc0ac1c17751a5943a88e7747d18340f, type: 3}
+  Spawner: {fileID: 1365860624240864774, guid: ce92c4a94d009054fa84728206e5e5e1, type: 3}
   pheromones: {fileID: 8408890724172061497, guid: 88c0bb16ac9d7a54a83d1d73189b2d86, type: 3}
   isRecord: 1
-  interval: 180
+  interval: 300
   captureInterval: 30
   _text: {fileID: 1613808170}
   _ants: []
