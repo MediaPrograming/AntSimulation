@@ -87,7 +87,6 @@ namespace AntSimulation
         public override void OnFindFeed(Transform[] feeds)
         {
             if(!this) return;
-            Debug.Log(feeds.Length);
             b_onFindFeed = false;
             //餌を持っている場合
             if (feed) return;

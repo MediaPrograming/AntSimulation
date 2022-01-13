@@ -21,13 +21,14 @@ namespace AntSimulation
             if(enemyGenerator) enemyGenerator.OnGenerateEvent -= antSimulator.Add;
             var spawner = g.GetComponentInChildren<AntSpawner>();
             var enemyGen = g.GetComponentInChildren<EnemyGenerator>();
-
-            if (antSpawner)
+            
+            if (spawner)
             {
+              
                 spawner.OnGenerateEvent += antSimulator.Add;
+                antSpawner = spawner;
             }
 
-            antSpawner = spawner;
             if (enemyGen)
             {
                 enemyGen.OnGenerateEvent += antSimulator.Add;

@@ -139,6 +139,7 @@ namespace AntSimulation
 
         IEnumerator Discharge()
         {
+            Debug.Log("uouou");
             if (_ants.Count != 0)
             {
                 List<Ant> removeList = new List<Ant>();
